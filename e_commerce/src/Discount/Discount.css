@@ -1,0 +1,51 @@
+/* Generic Styles */
+
+* {
+  box-sizing: border-box;
+}
+
+.wrapper {
+  margin: 50px auto;
+  text-align: center;
+}
+
+.plan {
+  background-color: white;
+  background-color: #db2777;
+  color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 6px 6px 50px -35px rgba(0, 0, 0, 0.75);
+}
+
+.plan-highlight {
+  background-color: #db2777;
+  color: white;
+}
+
+/* Generic Styles End */
+
+.discount_container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: space-evenly;
+}
+
+.disclogo {
+  margin: 10px auto;
+  text-align: center;
+  background-color: #db2777;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.img_disclogo {
+  border-radius: 10px;
+}
+
+@media screen and (min-width: 991px) {
+  .discount_container {
+    flex-direction: row;
+  }
+}
