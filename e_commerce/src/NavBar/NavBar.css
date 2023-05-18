@@ -1,0 +1,170 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.navbar_container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  align-content: space-between;
+  background-color: #f1f5f9;
+  padding: 10px;
+  height: auto;
+  font-family: sans-serif;
+  font-size: 14px;
+  position: relative;
+}
+
+/* For Mobile */
+
+.first_header {
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-links_category {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart_logo {
+  text-decoration: none;
+  font-weight: bolder;
+  text-align: center;
+  padding: 10px;
+  margin: 10px;
+}
+
+.nav_link {
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.third_header {
+  /* margin-top: 35px; */
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  align-items: center;
+}
+
+.first_header {
+  order: 1;
+  align-self: flex-start;
+}
+
+.nav_logo {
+  font-size: 20px;
+}
+
+.nav_logo_product {
+  font-size: 17px;
+}
+
+.nav_link_detail {
+  text-decoration: none;
+}
+
+.third_header {
+  order: 2;
+  position: absolute;
+  align-self: flex-end;
+  margin-top: 20px;
+}
+
+.input_div_header {
+  order: 3;
+}
+
+.input_div_header {
+  margin: 0.2rem auto;
+}
+
+.input_div_header {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 1px solid;
+  justify-content: space-between;
+  position: relative;
+}
+
+.search_Icon {
+  position: absolute;
+  right: 5px;
+}
+
+.input_header {
+  padding: 0.5rem 1rem;
+  border: none;
+  outline: none;
+}
+
+/* For DeskTop */
+@media screen and (min-width: 991px) {
+  body {
+    font-size: 18px;
+  }
+
+  .nav_logo {
+    font-size: 26px;
+  }
+
+  .nav_logo_product {
+    font-size: 20px;
+  }
+
+  .navbar_container {
+    padding: 15px;
+    flex-direction: row;
+    position: static;
+  }
+
+  .nav_link_cart {
+    font-size: 26px;
+  }
+
+  .first_header,
+  .third_header,
+  .input_div_header {
+    order: 0;
+  }
+  .third_header {
+    gap: 40px;
+  }
+
+  .third_header {
+    position: static;
+    align-self: center;
+    margin: 0;
+  }
+
+  .nav_link {
+    font-size: 25px;
+  }
+
+  .logo_men,
+  .logo_women,
+  .logo_kid {
+    font-size: 18px;
+  }
+
+  .input_div_header {
+    width: 20vw;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+
+  .input_div_header {
+    padding: 0 0.5rem;
+    /* width: 16vw; */
+  }
+}

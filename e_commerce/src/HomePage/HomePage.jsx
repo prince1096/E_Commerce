@@ -1,4 +1,5 @@
 import { useState } from "react";
+import NavBar from "../NavBar/NavBar";
 
 const HomePage = () => {
   const [finalData, setFinalData] = useState([]);
@@ -18,8 +19,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <h1>Hello world</h1>
-
+      <NavBar />
       <button onClick={() => fetchData()}>getData</button>
     </div>
   );
