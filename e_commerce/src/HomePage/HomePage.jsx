@@ -1,5 +1,6 @@
 import { useState } from "react";
 import NavBar from "../NavBar/NavBar";
+import CarouselHome from "../CarouselHome/CarouselHome";
 
 const HomePage = () => {
   const [finalData, setFinalData] = useState([]);
@@ -20,7 +21,8 @@ const HomePage = () => {
   return (
     <div>
       <NavBar />
-      <button onClick={() => fetchData()}>getData</button>
+      {/* <button onClick={() => fetchData()}>getData</button> */}
+      <CarouselHome />
     </div>
   );
 };

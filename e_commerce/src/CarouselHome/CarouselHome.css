@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+}
+
+.images {
+  width: 100%;
+  height: 300px;
+}
+
+.images img {
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (min-width: 991px) {
+  .images {
+    height: 600px;
+  }
+}
