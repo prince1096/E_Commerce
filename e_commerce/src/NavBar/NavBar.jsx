@@ -1,5 +1,5 @@
 import "./NavBar.css";
-
+// import Products from "../Product/Product";
 //
 
 import { HiOutlineHeart } from "react-icons/hi";
@@ -35,7 +35,7 @@ const NavBar = () => {
         </div>
 
         <div className="third_header nav-links">
-          <NavLink to="/" className="nav_link_detail">
+          <NavLink to="/products" className="nav_link_detail">
             {" "}
             <strong className="nav_logo_product">Product</strong>
           </NavLink>

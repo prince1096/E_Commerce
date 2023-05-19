@@ -5,8 +5,8 @@ import { NavLink } from "react-router-dom";
 const ImageCarousel = ({ imgName }) => {
   return (
     <div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <NavLink className="images">
+      <div className="image_carousel_container">
+        <NavLink className="images_carousel_navlink">
           <img
             src={imgName}
             // className="images_"

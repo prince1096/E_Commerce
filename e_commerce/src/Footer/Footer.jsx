@@ -1,6 +1,6 @@
 import "./Footer.css";
 
-import { NavLink, useNavigate } from "react-router-dom";
+// import {  useNavigate } from "react-router-dom";
 
 import { GrInstagram } from "react-icons/gr";
 import { GrLinkedin } from "react-icons/gr";
@@ -8,7 +8,7 @@ import { SlSocialTwitter } from "react-icons/sl";
 import { SiGithub } from "react-icons/si";
 
 const Footer = () => {
-  const navigate = useNavigate();
+  //   const navigate = useNavigate();
 
   return (
     <div className="main_footer_container">
@@ -29,53 +29,41 @@ const Footer = () => {
       <div className="connect_footer_container">
         <h4>Connect</h4>
         <div className="connect_container">
-          <NavLink
-            to="
-          https://www.instagram.com/codewithprinceraj/
-          "
-          ></NavLink>
-
-          <button
+          <a
             target="_blank"
             className="footer_button_links"
-            onClick={() =>
-              navigate("https://www.instagram.com/codewithprinceraj/")
-            }
+            href="https://www.instagram.com/codewithprinceraj/"
+            rel="noreferrer"
           >
             <GrInstagram />
-          </button>
+          </a>
 
-          {/* <a href="https://www.instagram.com/codewithprinceraj/> <GrInstagram /></a> */}
-
-          <button
+          <a
             target="_blank"
             className="footer_button_links"
-            onClick={() =>
-              navigate("https://www.instagram.com/codewithprinceraj/")
-            }
+            href="https://www.instagram.com/codewithprinceraj/"
+            rel="noreferrer"
           >
             <GrLinkedin />
-          </button>
+          </a>
 
-          <button
+          <a
             target="_blank"
             className="footer_button_links"
-            onClick={() =>
-              navigate("https://www.instagram.com/codewithprinceraj/")
-            }
+            href="https://www.instagram.com/codewithprinceraj/"
+            rel="noreferrer"
           >
             <SlSocialTwitter />
-          </button>
+          </a>
 
-          <button
+          <a
             target="_blank"
             className="footer_button_links"
-            onClick={() =>
-              navigate("https://www.instagram.com/codewithprinceraj/")
-            }
+            href="https://www.instagram.com/codewithprinceraj/"
+            rel="noreferrer"
           >
             <SiGithub />
-          </button>
+          </a>
         </div>
       </div>
     </div>
