@@ -1,18 +1,19 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./Login.css";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 
 // import { Link } from "react-router-dom";
 
 const Signup = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [userData, setUserData] = useState({
     fullname: "",
     email: "",
     password: "",
   });
 
-  const [token, setToken] = useState("");
+  // const [token, setToken] = useState("");
 
   //   console.log(userData);
 
@@ -26,30 +27,31 @@ const Signup = () => {
     try {
       let response = await fetch("/api/auth/signup", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json;charset=utf-8",
-        },
+
         body: JSON.stringify(userData),
       });
 
       const data = await response.json();
-      setToken(data?.encodedToken);
+      // setToken(data?.encodedToken);
+
       if (data?.encodedToken) {
-        navigate("/", { replace: true });
+        localStorage.setItem("token", data?.encodedToken);
+
+        navigate(location?.state?.from.pathname || "/login", { replace: true });
       }
 
       console.log(data);
     } catch (error) {}
   };
 
-  useEffect(() => {
-    localStorage.setItem("token", token);
-  }, [token]);
+  // useEffect(() => {
+  //   localStorage.setItem("token", token);
+  // }, [token]);
 
-  console.log(token);
+  // console.log(token);
 
   return (
-    <div>
+    <div className="login_container">
       <form onSubmit={signupHandler} className="login_form_container">
         <div id="name-block">
           <label className="login_label">Full Name</label>

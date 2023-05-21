@@ -3,11 +3,19 @@ import { createContext, useState } from "react";
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const currentUser = localStorage.getItem("isLoggedIn");
+  // console.log(currentUser);
+  const [isLoggedIn, setIsLoggedIn] = useState(currentUser || false);
+
+  const encodedToken = localStorage.getItem("token");
+
+  const [token, setToken] = useState(encodedToken || "");
 
   return (
     <div>
-      <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+      <AuthContext.Provider
+        value={{ token, setToken, isLoggedIn, setIsLoggedIn }}
+      >
         {children}
       </AuthContext.Provider>
     </div>

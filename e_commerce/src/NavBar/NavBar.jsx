@@ -9,8 +9,12 @@ import { AiOutlineSearch } from "react-icons/ai";
 import Diversity2Icon from "@mui/icons-material/Diversity2";
 
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../Auth/AuthProvider";
 
 const NavBar = () => {
+  const { token } = useContext(AuthContext);
+
   return (
     <div>
       <nav className="navbar_container">
@@ -40,10 +44,18 @@ const NavBar = () => {
             <strong className="nav_logo_product">Product</strong>
           </NavLink>
 
-          <NavLink to="/login" className="nav_link_detail">
-            {" "}
-            <BsPersonCircle className="nav_logo" />
-          </NavLink>
+          {token ? (
+            <NavLink to="/userprofile" className="nav_link_detail">
+              {" "}
+              <BsPersonCircle className="nav_logo" />
+            </NavLink>
+          ) : (
+            <NavLink to="/login" className="nav_link_detail">
+              {" "}
+              {/* <BsPersonCircle className="nav_logo" /> */}
+              Login
+            </NavLink>
+          )}
 
           <NavLink to="/wishlist" className="nav_link_detail">
             {" "}

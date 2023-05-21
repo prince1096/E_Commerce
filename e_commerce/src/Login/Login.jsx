@@ -1,42 +1,58 @@
 import "./Login.css";
 
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
+// import axios from "axios";
+import { AuthContext } from "../Auth/AuthProvider";
 
 const Login = () => {
   const encodedToken = localStorage.getItem("token");
+  console.log(encodedToken);
 
-  // const [loginData, setLoginData] = useState([]);
+  const { setToken } = useContext(AuthContext);
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  // const [token, setToken] = useState("");
 
-  // const loginHandler = async () => {
-  //   try {
-  //     const response = await axios.get("/api/auth/login", {
-  //       headers: {
-  //         authorization: encodedToken,
-  //       },
-  //     });
-  //   } catch (error) {}
-  // };
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  // const encodedToken = localStorage.getItem("token");
-  // const [foo, setFoo] = useState([]);
-  // const fetchFooDetails = async () => {
-  //   try {
-  //     const response = await axios.get(`/api/user/private-route`, {
-  //       headers: {
-  //         authorization: encodedToken, // passing token as an authorization header
-  //       },
-  //     });
-  //     setFoo(response.data.bar);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const [loginData, setLoginData] = useState({ email: "", password: "" });
+
+  const getLoginData = async (event) => {
+    if (!loginData) {
+      return;
+    }
+
+    event.preventDefault();
+    try {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        // headers: {
+        //   authorization: encodedToken,
+        // },
+        body: JSON.stringify(loginData),
+      });
+
+      const data = await response.json();
+      // setToken(data?.encodedToken);
+
+      if (data?.encodedToken) {
+        setIsLoggedIn(true);
+        localStorage.setItem("isLoggedIn", isLoggedIn);
+        localStorage.setItem("token", data?.encodedToken);
+        setToken(data?.encodedToken);
+        navigate(location?.state?.from.pathname || "/", { replace: true });
+      }
+
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
-    <div className=".login_container">
-      {/* <form onSubmit={loginHandler} className="login_form_container"> */}
-      <form className="login_form_container">
+    <div className="login_container">
+      <form onSubmit={getLoginData} className="login_form_container">
         <div id="email-block">
           <label className="login_label">Email Address</label>
           <input
@@ -44,6 +60,10 @@ const Login = () => {
             type="email"
             name="email"
             placeholder="Email Address"
+            value={loginData?.email}
+            onChange={(event) =>
+              setLoginData({ ...loginData, email: event.target.value })
+            }
           />
         </div>
 
@@ -51,9 +71,13 @@ const Login = () => {
           <label>password</label>
           <input
             className="login_input"
-            type="text"
+            type="password"
             name="password"
             placeholder="Password"
+            value={loginData?.password}
+            onChange={(event) =>
+              setLoginData({ ...loginData, password: event.target.value })
+            }
           />
         </div>
 

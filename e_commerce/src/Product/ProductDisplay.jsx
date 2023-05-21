@@ -1,12 +1,29 @@
 // import { addItemToCartHandler } from "../backend/controllers/CartController";
+import { useContext } from "react";
 import "./ProductDisplay.css";
+import { AuthContext } from "../Auth/AuthProvider";
 
 const ProductDisplay = ({ product }) => {
+  const { token } = useContext(AuthContext);
+
   const tilteLength = (str) => {
     return str.length > 15 ? str.slice(0, 14) + "..." : str;
   };
 
-  const addToCartHandler = () => {};
+  const addToCartHandler = async (product) => {
+    try {
+      const response = await fetch("/api/user/cart", {
+        method: "POST",
+        authorization: token,
+        body: JSON.stringify(product),
+      });
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="productdisplay_container">

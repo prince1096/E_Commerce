@@ -10,6 +10,7 @@ import Wishlist from "./Wishlist/Wishlist";
 import RequireAuth from "./Auth/RequireAuth";
 import Login from "./Login/Login";
 import Signup from "./Login/SignUp";
+import UserProfile from "./Login/UserProfile";
 
 function App() {
   return (
@@ -26,21 +27,22 @@ function App() {
         <Route
           path="/cart"
           element={
-            // <RequireAuth>
-            <Cart />
-            // </RequireAuth>
+            <RequireAuth>
+              <Cart />
+            </RequireAuth>
           }
         />
         <Route
           path="/wishlist"
           element={
-            // <RequireAuth>
-            <Wishlist />
-            // </RequireAuth>
+            <RequireAuth>
+              <Wishlist />
+            </RequireAuth>
           }
         />
-        <Route path="login" element={<Login />} />
-        <Route path="signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/userprofile" element={<UserProfile />} />
 
         <Route path="/mockman" element={<Mockman />} />
       </Routes>
