@@ -5,6 +5,11 @@ import Mockman from "mockman-js";
 import HomePage from "./HomePage/HomePage";
 import Product from "./Product/Product";
 import NavBar from "./NavBar/NavBar";
+import Cart from "./Cart/Cart";
+import Wishlist from "./Wishlist/Wishlist";
+import RequireAuth from "./Auth/RequireAuth";
+import Login from "./Login/Login";
+import Signup from "./Login/SignUp";
 
 function App() {
   return (
@@ -18,6 +23,25 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<Product />} />
+        <Route
+          path="/cart"
+          element={
+            // <RequireAuth>
+            <Cart />
+            // </RequireAuth>
+          }
+        />
+        <Route
+          path="/wishlist"
+          element={
+            // <RequireAuth>
+            <Wishlist />
+            // </RequireAuth>
+          }
+        />
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
+
         <Route path="/mockman" element={<Mockman />} />
       </Routes>
     </div>

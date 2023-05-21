@@ -55,23 +55,12 @@ const Products = () => {
           <div className="pagination">
             {page !== 1 && <span onClick={() => prevPageHandler()}>◀</span>}
 
-            {/* {[...Array(state?.initialProductData?.products?.length / 10)].map(
-              (_, i) => (
-                <span key={i} onClick={() => paginationHandler(i + 1)}>
-                  {" "}
-                  {i + 1}{" "}
-                </span>
-              )
-            )} */}
-
             {page !== 1 && (
               <span onClick={() => paginationHandler(page - 1)}>
                 {" "}
                 {page - 1}{" "}
               </span>
             )}
-
-            {/* <span onClick={() => paginationHandler(page + 1)}> {page} </span> */}
 
             <span>{page}</span>
 

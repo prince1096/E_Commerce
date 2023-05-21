@@ -1,9 +1,12 @@
+// import { addItemToCartHandler } from "../backend/controllers/CartController";
 import "./ProductDisplay.css";
 
 const ProductDisplay = ({ product }) => {
   const tilteLength = (str) => {
     return str.length > 15 ? str.slice(0, 14) + "..." : str;
   };
+
+  const addToCartHandler = () => {};
 
   return (
     <div className="productdisplay_container">
@@ -20,7 +23,9 @@ const ProductDisplay = ({ product }) => {
 
       <div className="image_looks image_looks_trending">Trending</div>
 
-      <button className="cart_button">Add to Cart</button>
+      <button className="cart_button" onClick={() => addToCartHandler(product)}>
+        Add to Cart
+      </button>
     </div>
   );
 };

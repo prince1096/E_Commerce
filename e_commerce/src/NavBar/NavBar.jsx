@@ -40,17 +40,17 @@ const NavBar = () => {
             <strong className="nav_logo_product">Product</strong>
           </NavLink>
 
-          <NavLink to="/" className="nav_link_detail">
+          <NavLink to="/login" className="nav_link_detail">
             {" "}
             <BsPersonCircle className="nav_logo" />
           </NavLink>
 
-          <NavLink to="/" className="nav_link_detail">
+          <NavLink to="/wishlist" className="nav_link_detail">
             {" "}
             <HiOutlineHeart className="nav_logo" />
           </NavLink>
 
-          <NavLink to="/" className="nav_link_detail  nav_link_cart">
+          <NavLink to="/cart" className="nav_link_detail  nav_link_cart">
             {" "}
             <BsCart3 className="nav_logo" />
           </NavLink>
