@@ -5,22 +5,54 @@ import { AuthContext } from "../Auth/AuthProvider";
 
 const ProductDisplay = ({ product }) => {
   const { token } = useContext(AuthContext);
+  // console.log(token);
 
   const tilteLength = (str) => {
-    return str.length > 15 ? str.slice(0, 14) + "..." : str;
+    return str?.length > 15 ? str.slice(0, 14) + "..." : str;
   };
 
   const addToCartHandler = async (product) => {
+    console.log(token);
+
     try {
+      console.log(1);
       const response = await fetch("/api/user/cart", {
         method: "POST",
-        authorization: token,
+        header: {
+          authorization: token,
+        },
         body: JSON.stringify(product),
       });
+      console.log(response);
+      console.log(3);
 
       const data = await response.json();
       console.log(data);
     } catch (error) {
+      console.log(2);
+      console.log(error);
+    }
+  };
+
+  const addToWishListHandler = async (product) => {
+    console.log(token);
+
+    try {
+      // console.log(1);
+      const response = await fetch("/api/user/wishlist", {
+        method: "POST",
+        headers: {
+          authorization: token,
+        },
+        body: JSON.stringify(product),
+      });
+      // console.log(response);
+      // console.log(3);
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log(2);
       console.log(error);
     }
   };
@@ -36,7 +68,12 @@ const ProductDisplay = ({ product }) => {
       <h3> {tilteLength(product?.title)}</h3>
       <span className="product_span">${product?.price}</span>
 
-      <div className="image_looks image_looks_wishlist">Heart</div>
+      <button
+        onClick={() => addToWishListHandler(product)}
+        className="image_looks image_looks_wishlist"
+      >
+        Heart
+      </button>
 
       <div className="image_looks image_looks_trending">Trending</div>
 

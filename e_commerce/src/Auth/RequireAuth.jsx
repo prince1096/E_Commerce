@@ -4,13 +4,10 @@ import { useLocation, Navigate } from "react-router";
 
 const RequireAuth = ({ children }) => {
   const location = useLocation();
-  const { token, isLoggedIn } = useContext(AuthContext);
+  // const { token, isLoggedIn } = useContext(AuthContext);
+  const { token } = useContext(AuthContext);
 
-  return token && isLoggedIn ? (
-    children
-  ) : (
-    <Navigate to="/login" state={{ from: location }} />
-  );
+  return token ? children : <Navigate to="/login" state={{ from: location }} />;
 };
 
 export default RequireAuth;

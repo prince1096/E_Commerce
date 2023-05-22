@@ -3,12 +3,13 @@ import { AuthContext } from "../Auth/AuthProvider";
 import { useNavigate } from "react-router";
 
 const UserProfile = () => {
-  const { token, isLoggedIn } = useContext(AuthContext);
+  const { token, isLoggedIn, setToken } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const userHandler = () => {
-    localStorage.clear(token);
-    localStorage.clear(isLoggedIn);
+    localStorage.clear();
+    setToken("");
+    // localStorage.clear(isLoggedIn);
     navigate("/", { replace: true });
   };
 
