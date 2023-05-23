@@ -11,6 +11,7 @@ import RequireAuth from "./Auth/RequireAuth";
 import Login from "./Login/Login";
 import Signup from "./Login/SignUp";
 import UserProfile from "./Login/UserProfile";
+import IndividualProduct from "./IndividualProduct/IndividualProduct";
 
 function App() {
   return (
@@ -43,6 +44,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/userprofile" element={<UserProfile />} />
+        <Route
+          path="/individualproduct/:productId"
+          element={<IndividualProduct />}
+        />
 
         <Route path="/mockman" element={<Mockman />} />
       </Routes>

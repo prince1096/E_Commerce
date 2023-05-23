@@ -4,8 +4,12 @@ import fifty from "../assets/fifty.jpg";
 import disclogo from "../assets/dislogo.jpg";
 
 import "./Discount.css";
+import { useContext } from "react";
+import { ProductContext } from "../ProductProvider/ProductProvider";
 
 const Discount = () => {
+  const { state } = useContext(ProductContext);
+
   return (
     <div>
       {/* <div> */}

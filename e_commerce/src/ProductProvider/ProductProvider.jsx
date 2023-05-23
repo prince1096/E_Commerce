@@ -8,6 +8,7 @@ const initialState = {
   isLoading: false,
   errorMsg: "",
   filtersList: [],
+  searchedText: "",
 };
 
 const ProductProvider = ({ children }) => {
@@ -46,7 +47,18 @@ const ProductProvider = ({ children }) => {
         return { ...state, filtersList: action.payload };
 
       case "CLEAR_FILTERS":
-        return { ...state, initialProductData: action.payload };
+        return {
+          ...state,
+          // initialProductData: [],
+          // storeInitialData: [],
+          // isLoading: false,
+          // errorMsg: "",
+          filtersList: [],
+          // searchedText: "",
+        };
+
+      case "SEARCHED":
+        return { ...state, searchedText: action.payload };
 
       default:
         return { ...state };
@@ -107,6 +119,7 @@ const ProductProvider = ({ children }) => {
     dispatch({ type: "REVIEW_SORTING", payload: ratingFilteredProduct });
   };
 
+  // roundPrice
   const roundPriceHandler = (event) => {
     const priceFilteredProduct = state?.storeInitialData?.filter(
       (product) => product?.price > event.target.value
@@ -115,11 +128,67 @@ const ProductProvider = ({ children }) => {
     dispatch({ type: "PRICE_HANDLER", payload: priceFilteredProduct });
   };
 
+  // clear filters
   const clearFilters = () => {
     console.log(1);
-    dispatch({ type: "CLEAR_FILTERS", payload: [...state?.storeInitialData] });
+    dispatch({ type: "CLEAR_FILTERS" });
     console.log(2);
   };
+
+  //
+
+  // category
+  const checkBoxHandler = (event) => {
+    const { value, checked } = event.target;
+
+    checked
+      ? dispatch({
+          type: "CHECKBOX_FILTERS",
+          payload: [...state?.filtersList, value],
+        })
+      : dispatch({
+          type: "CHECKBOX_FILTERS",
+          payload: state.filtersList.filter(
+            (filterValue) => value !== filterValue
+          ),
+        });
+  };
+
+  // discountcheckbox
+  const discountHandler = (event) => {
+    const { value, checked } = event.target;
+
+    console.log(value);
+
+    checked
+      ? dispatch({
+          type: "DISCOUNT_HANDLER",
+          payload: [...state?.filtersList, value],
+        })
+      : dispatch({
+          type: "DISCOUNT_HANDLER",
+          payload: state.filtersList.filter(
+            (filterValue) => value !== filterValue
+          ),
+        });
+  };
+
+  // searchHandler
+
+  // const searchProductHandler = (searchedProduct) => {
+  //   searchedProduct = ""
+  //     ? dispatch({ type: "SEARCHED", payload: "" })
+  //     : dispatch({
+  //         type: "SEARCHED",
+  //         payload: state?.storeInitialData?.filter(
+  //           ({ title, description }) =>
+  //             title?.toLowerCase().includes(searchedProduct?.toLowerCase()) ||
+  //             description
+  //               ?.toLowerCase()
+  //               .includes(searchedProduct?.toLowerCase())
+  //         ),
+  //       });
+  // };
 
   useEffect(() => {
     getProductData();
@@ -136,6 +205,9 @@ const ProductProvider = ({ children }) => {
           reviewSortingHandler,
           roundPriceHandler,
           clearFilters,
+          checkBoxHandler,
+          discountHandler,
+          // searchProductHandler,
         }}
       >
         {" "}

@@ -5,51 +5,15 @@ import { ProductContext } from "../ProductProvider/ProductProvider";
 const Filter = () => {
   const {
     state,
-    dispatch,
+    // dispatch,
     lowPriceHandler,
     highPriceHandler,
     reviewSortingHandler,
     roundPriceHandler,
     clearFilters,
+    checkBoxHandler,
+    discountHandler,
   } = useContext(ProductContext);
-
-  const checkBoxHandler = (event) => {
-    const { value, checked } = event.target;
-
-    checked
-      ? dispatch({
-          type: "CHECKBOX_FILTERS",
-          payload: [...state?.filtersList, value],
-        })
-      : dispatch({
-          type: "CHECKBOX_FILTERS",
-          payload: state.filtersList.filter(
-            (filterValue) => value !== filterValue
-          ),
-        });
-  };
-
-  const discountHandler = (event) => {
-    const { value, checked } = event.target;
-
-    console.log(value);
-
-    checked
-      ? dispatch({
-          type: "DISCOUNT_HANDLER",
-          payload: [...state?.filtersList, value],
-        })
-      : dispatch({
-          type: "DISCOUNT_HANDLER",
-          payload: state.filtersList.filter(
-            (filterValue) => value !== filterValue
-          ),
-        });
-  };
-
-  // console.log(state?.filtersList);
-
-  // console.log(state?.filtersList);
 
   return (
     <div className="filter_container">
@@ -74,28 +38,45 @@ const Filter = () => {
           <input
             type="checkbox"
             value="smartphones"
+            checked={state?.filtersList?.includes("smartphones")}
             onChange={checkBoxHandler}
           />{" "}
           Mobile
         </label>
 
         <label htmlFor="">
-          <input type="checkbox" value="laptops" onChange={checkBoxHandler} />{" "}
+          <input
+            type="checkbox"
+            value="laptops"
+            checked={state?.filtersList?.includes("laptops")}
+            onChange={checkBoxHandler}
+          />{" "}
           Laptops
         </label>
 
         <label htmlFor="">
-          <input type="checkbox" value="fashion" onChange={checkBoxHandler} />{" "}
+          <input
+            type="checkbox"
+            value="fashion"
+            checked={state?.filtersList?.includes("fashion")}
+            onChange={checkBoxHandler}
+          />{" "}
           Fashion
         </label>
         <label htmlFor="">
-          <input type="checkbox" value="groceries" onChange={checkBoxHandler} />{" "}
+          <input
+            type="checkbox"
+            value="groceries"
+            checked={state?.filtersList?.includes("groceries")}
+            onChange={checkBoxHandler}
+          />{" "}
           Grocery
         </label>
         <label htmlFor="">
           <input
             type="checkbox"
             value="home-appliances"
+            checked={state?.filtersList?.includes("home-appliances")}
             onChange={checkBoxHandler}
           />{" "}
           Home
@@ -104,6 +85,7 @@ const Filter = () => {
           <input
             type="checkbox"
             value="automotivevehicle"
+            checked={state?.filtersList?.includes("automotivevehicle")}
             onChange={checkBoxHandler}
           />{" "}
           Vehicle
@@ -143,6 +125,8 @@ const Filter = () => {
             name="radiostar"
             id="twostar"
             value="2"
+            // checked={state?.filtersList?.includes("60")}
+
             onChange={reviewSortingHandler}
           />{" "}
           2 stars and above{" "}
@@ -165,27 +149,57 @@ const Filter = () => {
         <h3>Discount</h3>
 
         <label htmlFor="">
-          <input type="checkbox" value="60" onChange={discountHandler} /> 60%
-          and upper
+          <input
+            type="checkbox"
+            value="60"
+            checked={state?.filtersList?.includes("60")}
+            onChange={discountHandler}
+          />{" "}
+          60% and upper
         </label>
         <label htmlFor="">
-          <input type="checkbox" value="50" onChange={discountHandler} />{" "}
+          <input
+            type="checkbox"
+            value="50"
+            checked={state?.filtersList?.includes("50")}
+            onChange={discountHandler}
+          />{" "}
           50%-60%
         </label>
         <label htmlFor="">
-          <input type="checkbox" value="40" onChange={discountHandler} />{" "}
+          <input
+            type="checkbox"
+            value="40"
+            checked={state?.filtersList?.includes("40")}
+            onChange={discountHandler}
+          />{" "}
           40%-50%
         </label>
         <label htmlFor="">
-          <input type="checkbox" value="30" onChange={discountHandler} />{" "}
+          <input
+            type="checkbox"
+            value="30"
+            checked={state?.filtersList?.includes("30")}
+            onChange={discountHandler}
+          />{" "}
           30%-40%
         </label>
         <label htmlFor="">
-          <input type="checkbox" value="20" onChange={discountHandler} />{" "}
+          <input
+            type="checkbox"
+            value="20"
+            checked={state?.filtersList?.includes("20")}
+            onChange={discountHandler}
+          />{" "}
           20%-30%
         </label>
         <label htmlFor="">
-          <input type="checkbox" value="10" onChange={discountHandler} />{" "}
+          <input
+            type="checkbox"
+            value="10"
+            checked={state?.filtersList?.includes("10")}
+            onChange={discountHandler}
+          />{" "}
           10%-20%
         </label>
       </div>

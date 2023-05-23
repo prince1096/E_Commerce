@@ -6,6 +6,7 @@ import Filter from "../Filter/Filter";
 import ProductDisplay from "./ProductDisplay";
 
 import "./Product.css";
+import Category from "../Category/Category";
 
 const Products = () => {
   const { state } = useContext(ProductContext);
@@ -67,56 +68,59 @@ const Products = () => {
       : state?.initialProductData;
 
   return (
-    <div>
-      <div className="main_top_div">
-        <div className="fakefetch_container">
+    // <div>
+    <div className="main_top_div">
+      <div className="fakefetch_container">
+        <div>
+          <Category />
+        </div>
+
+        <div className="product_listing_page_container">
           <div className="filter_infetch">
-            <Filter
-            // allProducts={state?.initialProductData}
-            // filterProducts={filterProducts}
-            />
+            <Filter />
           </div>
-          <div className={`main_container ${className} `}>
+          <div className={`main_container_product ${className} `}>
             {filteredProducts
               ?.slice((page - 1) * 8, page * 8)
               .map((product) => (
-                <ProductDisplay product={product} />
+                <ProductDisplay key={product?.id} product={product} />
               ))}
           </div>
         </div>
-
-        {/* Pagination */}
-        {filteredProducts?.length > 0 && (
-          <div className="pagination">
-            {page !== 1 && <span onClick={() => prevPageHandler()}>◀</span>}
-
-            {page !== 1 && (
-              <span onClick={() => paginationHandler(page - 1)}>
-                {" "}
-                {page - 1}{" "}
-              </span>
-            )}
-
-            <span>{page}</span>
-
-            {page !== Math.ceil(filteredProducts?.length / 10) && (
-              <span onClick={() => paginationHandler(page + 1)}>
-                {" "}
-                {page + 1}{" "}
-              </span>
-            )}
-
-            {page !== Math.ceil(filteredProducts?.length / 10) && (
-              <span onClick={() => nextPageHandler()}>▶</span>
-            )}
-          </div>
-        )}
-
-        <button className="show_filter_button" onClick={filterHandler}>
-          Filters
-        </button>
       </div>
+
+      {/* Pagination */}
+      {filteredProducts?.length > 0 && (
+        <div className="pagination">
+          {page !== 1 && <span onClick={() => prevPageHandler()}>◀</span>}
+
+          {page !== 1 && (
+            <span onClick={() => paginationHandler(page - 1)}>
+              {" "}
+              {page - 1}{" "}
+            </span>
+          )}
+
+          <span>{page}</span>
+
+          {page !== Math.ceil(filteredProducts?.length / 10) && (
+            <span onClick={() => paginationHandler(page + 1)}>
+              {" "}
+              {page + 1}{" "}
+            </span>
+          )}
+
+          {page !== Math.ceil(filteredProducts?.length / 10) && (
+            <span onClick={() => nextPageHandler()}>▶</span>
+          )}
+        </div>
+      )}
+
+      <button className="show_filter_button" onClick={filterHandler}>
+        Filters
+      </button>
     </div>
+    // </div>
   );
 };
 
