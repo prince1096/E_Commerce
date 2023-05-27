@@ -11,40 +11,45 @@ import { useContext } from "react";
 import { ProductContext } from "../ProductProvider/ProductProvider";
 
 const Category = () => {
-  const { state, checkBoxHandler } = useContext(ProductContext);
+  const { state, categoriesFilter } = useContext(ProductContext);
 
   return (
     <div className="categorywise_container">
-      <div
-        // onClickHandler={checkBoxHandler}
-        className="categorylist_container"
-      >
-        <button onChange={checkBoxHandler} value={"smartphones"}>
-          <img src={images_mobiles} width="80px" alt="" />
+      <div className="categorylist_container">
+        <button onClick={() => categoriesFilter("smartphones")}>
+          <img src={images_mobiles} width="80px" height="65px" alt="" />
           <p>Mobiles</p>
         </button>
-        {/* <img src={images_mobiles} alt="" />
-        <p>Mobiles</p> */}
       </div>
       <div className="categorylist_container">
-        <img src={laptop_logo} alt="" />
-        <p>Laptops</p>
+        <button onClick={() => categoriesFilter("laptops")}>
+          <img src={laptop_logo} alt="" width="80px" height="65px" />
+          <p>Laptops</p>
+        </button>
       </div>
       <div className="categorylist_container">
-        <img src={family_fashion_logo} alt="" />
-        <p>Fashion</p>
+        <button onClick={() => categoriesFilter("fashion")}>
+          <img src={family_fashion_logo} alt="" width="80px" height="65px" />
+          <p>Fashion</p>
+        </button>
       </div>
       <div className="categorylist_container">
-        <img src={grocery_logo} alt="" />
-        <p>Grocery</p>
+        <button onClick={() => categoriesFilter("groceries")}>
+          <img src={grocery_logo} alt="" width="80px" height="65px" />
+          <p>Grocery</p>
+        </button>
       </div>
       <div className="categorylist_container">
-        <img src={homelogo} alt="" />
-        <p>Appliances</p>
+        <button onClick={() => categoriesFilter("home-appliances")}>
+          <img src={homelogo} alt="" width="80px" height="65px" />
+          <p>Appliances</p>
+        </button>
       </div>
       <div className="categorylist_container">
-        <img src={bike} alt="" />
-        <p>Bike&parts</p>
+        <button onClick={() => categoriesFilter("automotivevehicle")}>
+          <img src={bike} alt="" width="80px" height="65px" />
+          <p>Bike&parts</p>
+        </button>
       </div>
     </div>
   );

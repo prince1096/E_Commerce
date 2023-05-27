@@ -103,14 +103,14 @@ const Products = () => {
 
           <span>{page}</span>
 
-          {page !== Math.ceil(filteredProducts?.length / 10) && (
+          {page !== Math.ceil(filteredProducts?.length / 8) && (
             <span onClick={() => paginationHandler(page + 1)}>
               {" "}
               {page + 1}{" "}
             </span>
           )}
 
-          {page !== Math.ceil(filteredProducts?.length / 10) && (
+          {page !== Math.ceil(filteredProducts?.length / 8) && (
             <span onClick={() => nextPageHandler()}>▶</span>
           )}
         </div>

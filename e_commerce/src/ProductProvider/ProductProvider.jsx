@@ -9,6 +9,8 @@ const initialState = {
   errorMsg: "",
   filtersList: [],
   searchedText: "",
+  cartBox: [],
+  wishlistBox: [],
 };
 
 const ProductProvider = ({ children }) => {
@@ -60,6 +62,12 @@ const ProductProvider = ({ children }) => {
       case "SEARCHED":
         return { ...state, searchedText: action.payload };
 
+      case "CART_ADDED":
+        return { ...state, cartBox: action.payload };
+
+      case "WISHLIST_ADDED":
+        return { ...state, wishlistBox: action.payload };
+
       default:
         return { ...state };
     }
@@ -77,7 +85,7 @@ const ProductProvider = ({ children }) => {
 
       dispatch({ type: "DATA_FETCH_SUCCESS", payload: data.products });
 
-      // console.log(data.products);
+      // console.log(data);
     } catch (error) {
       console.log(error);
     } finally {
@@ -154,6 +162,25 @@ const ProductProvider = ({ children }) => {
         });
   };
 
+  const categoriesFilter = (value) => {
+    // console.log(value, "2");
+    // dispatch({
+    //   type: "CHECKBOX_FILTERS",
+    //   payload: state?.filtersList?.includes(value)
+    //     ? [...state?.filtersList]
+    //     : [...state?.filtersList, value],
+    // });
+
+    dispatch({
+      type: "CHECKBOX_FILTERS",
+      payload: state?.filtersList?.includes(value)
+        ? [...state?.filtersList]
+        : [value],
+    });
+  };
+
+  // console.log(state?.filtersList);
+
   // discountcheckbox
   const discountHandler = (event) => {
     const { value, checked } = event.target;
@@ -173,25 +200,37 @@ const ProductProvider = ({ children }) => {
         });
   };
 
-  // searchHandler
-
-  // const searchProductHandler = (searchedProduct) => {
-  //   searchedProduct = ""
-  //     ? dispatch({ type: "SEARCHED", payload: "" })
-  //     : dispatch({
-  //         type: "SEARCHED",
-  //         payload: state?.storeInitialData?.filter(
-  //           ({ title, description }) =>
-  //             title?.toLowerCase().includes(searchedProduct?.toLowerCase()) ||
-  //             description
-  //               ?.toLowerCase()
-  //               .includes(searchedProduct?.toLowerCase())
-  //         ),
-  //       });
-  // };
-
   useEffect(() => {
     getProductData();
+    getCartProduct();
+  }, []);
+
+  // cart
+
+  const token = localStorage.getItem("token");
+  const getCartProduct = async () => {
+    try {
+      const response = await fetch("/api/user/cart", {
+        method: "GET",
+        headers: {
+          authorization: token,
+        },
+        // body: JSON.stringify({ product }),
+      });
+
+      const data = await response.json();
+      console.log(data?.cart);
+
+      dispatch({ type: "CART_ADDED", payload: data?.cart });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // getCartProduct();
+
+  useEffect(() => {
+    getCartProduct();
   }, []);
 
   return (
@@ -207,6 +246,7 @@ const ProductProvider = ({ children }) => {
           clearFilters,
           checkBoxHandler,
           discountHandler,
+          categoriesFilter,
           // searchProductHandler,
         }}
       >

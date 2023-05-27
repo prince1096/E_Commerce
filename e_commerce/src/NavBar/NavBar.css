@@ -105,8 +105,8 @@
 
 .searched_product_containers {
   width: 350px;
-  height: 400px;
-  /* height: ; */
+  max-height: 400px;
+  /* height:  ; */
   background-color: whitesmoke;
   position: absolute;
   z-index: 2;
@@ -168,7 +168,7 @@
 }
 
 /* Tablet */
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
   body {
     font-size: 16px;
   }

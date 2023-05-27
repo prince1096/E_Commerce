@@ -24,7 +24,7 @@ const NavBar = () => {
     product?.title.toLowerCase().includes(searchedText?.toLowerCase())
   );
 
-  console.log(searchedText);
+  // console.log(searchedText);
 
   return (
     <div>

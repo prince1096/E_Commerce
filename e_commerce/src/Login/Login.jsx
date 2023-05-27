@@ -7,7 +7,7 @@ import { AuthContext } from "../Auth/AuthProvider";
 
 const Login = () => {
   const encodedToken = localStorage.getItem("token");
-  console.log(encodedToken);
+  // console.log(encodedToken);
 
   const { setToken } = useContext(AuthContext);
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);

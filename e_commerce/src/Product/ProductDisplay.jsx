@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 
 const ProductDisplay = ({ product }) => {
   const { token } = useContext(AuthContext);
-  // console.log(token);
+  // const tokens = localStorage.getItem("token");
+  // console.log(tokens);
 
   const tilteLength = (str) => {
     return str?.length > 15 ? str.slice(0, 14) + "..." : str;
@@ -36,7 +37,7 @@ const ProductDisplay = ({ product }) => {
   // };
 
   const addToCartHandler = async (product) => {
-    console.log(token, "cart");
+    // console.log(token, "cart");
     try {
       // console.log(1);
       const response = await fetch("/api/user/cart", {
@@ -50,7 +51,7 @@ const ProductDisplay = ({ product }) => {
       // console.log(3);
 
       const data = await response.json();
-      console.log(data, "cart");
+      // console.log(data, "cart");
     } catch (error) {
       // console.log(2);
       console.log(error);
@@ -72,7 +73,7 @@ const ProductDisplay = ({ product }) => {
       // console.log(3);
 
       const data = await response.json();
-      console.log(data, "wishlist");
+      // console.log(data, "wishlist");
     } catch (error) {
       // console.log(2);
       console.log(error);
