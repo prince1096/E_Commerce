@@ -14,3 +14,15 @@
   display: flex;
   margin-top: 20px;
 }
+
+.product_category_component {
+  /* width: 100vh; */
+}
+
+.show_filter_responsive {
+  display: block;
+}
+
+.hide_filter_responsive {
+  display: none;
+}

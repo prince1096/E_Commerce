@@ -2,10 +2,11 @@ import { useContext } from "react";
 import "./Filter.css";
 import { ProductContext } from "../ProductProvider/ProductProvider";
 
-const Filter = () => {
+const Filter = ({ showFilter, setShowFilter, filterHandler }) => {
   const {
     state,
     // dispatch,
+    priceSortingHandler,
     lowPriceHandler,
     highPriceHandler,
     reviewSortingHandler,
@@ -15,8 +16,20 @@ const Filter = () => {
     discountHandler,
   } = useContext(ProductContext);
 
+  const ratings = [4, 3, 2, 1];
+  const sortingPrice = ["lowToHigh", "highToLow"];
+
   return (
     <div className="filter_container">
+      {/* <button
+        className={`show_filter_button ${
+          showFilter ? "show_filter_responsive" : "hide_filter_responsive"
+        } `}
+        onClick={filterHandler}
+      >
+        HideFilters
+      </button> */}
+
       <div className="filter_clear">
         <h3>Filters</h3>
         <button onClick={clearFilters}>Clear</button>
@@ -26,6 +39,7 @@ const Filter = () => {
       <input
         type="range"
         min="0"
+        value={state?.roundPrice}
         max="2000"
         className="range_input"
         onChange={roundPriceHandler}
@@ -95,54 +109,20 @@ const Filter = () => {
       <div className="filter_product">
         <h3>Ratings</h3>
 
-        <label htmlFor="fourstar">
-          {" "}
-          <input
-            type="radio"
-            name="radiostar"
-            id="fourstar"
-            value="4"
-            onChange={reviewSortingHandler}
-          />{" "}
-          4 stars and above{" "}
-        </label>
-        <label htmlFor="threestar">
-          {" "}
-          <input
-            type="radio"
-            name="radiostar"
-            id="threestar"
-            value="3"
-            onChange={reviewSortingHandler}
-          />{" "}
-          3 stars and above{" "}
-        </label>
-
-        <label htmlFor="twostar">
-          {" "}
-          <input
-            type="radio"
-            name="radiostar"
-            id="twostar"
-            value="2"
-            // checked={state?.filtersList?.includes("60")}
-
-            onChange={reviewSortingHandler}
-          />{" "}
-          2 stars and above{" "}
-        </label>
-
-        <label htmlFor="onestar">
-          {" "}
-          <input
-            type="radio"
-            name="radiostar"
-            id="onestar"
-            value="1"
-            onChange={reviewSortingHandler}
-          />{" "}
-          1 stars and above{" "}
-        </label>
+        {ratings.map((rating) => (
+          <label htmlFor={rating}>
+            {" "}
+            <input
+              type="radio"
+              name="radiostar"
+              id={rating}
+              value={rating}
+              onChange={reviewSortingHandler}
+              checked={rating === state?.filterByRating}
+            />{" "}
+            {rating} stars and above{" "}
+          </label>
+        ))}
       </div>
 
       <div className="filter_product">
@@ -206,7 +186,23 @@ const Filter = () => {
 
       <div className="filter_product">
         <h3>Sort By Price</h3>
-        <label htmlFor="lowtohigh">
+
+        {sortingPrice.map((sortedValue) => (
+          <label htmlFor={sortedValue}>
+            {" "}
+            <input
+              type="radio"
+              name="radiosort"
+              id={sortedValue}
+              value={sortedValue}
+              checked={sortedValue === state?.sortByPrice}
+              onClick={priceSortingHandler}
+            />{" "}
+            price- {sortedValue === "lowToHigh" ? "Low To High" : "High To Low"}{" "}
+          </label>
+        ))}
+
+        {/* <label htmlFor="lowtohigh">
           {" "}
           <input
             type="radio"
@@ -225,7 +221,7 @@ const Filter = () => {
             onClick={highPriceHandler}
           />{" "}
           price- High To Low{" "}
-        </label>
+        </label> */}
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ const NavBar = () => {
   const { searchedText } = state;
 
   const searchedItem = state?.initialProductData?.filter((product) =>
-    product?.title.toLowerCase().includes(searchedText?.toLowerCase())
+    product?.title?.toLowerCase().includes(searchedText?.toLowerCase())
   );
 
   // console.log(searchedText);

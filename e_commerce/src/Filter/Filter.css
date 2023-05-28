@@ -50,12 +50,13 @@
   margin-top: 1.5rem;
   position: sticky;
   bottom: 0;
-  /* display: none; */
+
+  display: block;
 }
 
-.hide_product_details {
+/* .hide_product_details {
   display: none;
-}
+} */
 
 @media screen and (min-width: 768px) {
   .filter_infetch {

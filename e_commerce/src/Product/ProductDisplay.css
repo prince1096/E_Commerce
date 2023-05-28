@@ -2,12 +2,19 @@
 .productdisplay_container {
   width: 250px;
   border-radius: 6px;
-  box-shadow: 5px 5px 10px 5px #999;
+  /* background-color: rgba(255, 255, 255, 0.3); */
+  /* background-color: #0891b2; */
   position: relative;
+}
+
+.productdisplay_container:hover {
+  background-color: white;
+  box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.11);
 }
 
 .product_link_individual {
   text-decoration: none;
+  background-color: white;
 }
 
 .product_span {
@@ -40,13 +47,21 @@ p {
 }
 
 .image_looks_trending {
-  top: 15px;
-  left: 15px;
+  top: 0px;
+  left: 0px;
+  background-color: red;
+  color: whitesmoke;
+  font-weight: bold;
+  padding: 2px;
 }
 
 .image_looks_wishlist {
-  top: 15px;
-  right: 15px;
+  top: 0px;
+  right: 0px;
+  border: none;
+  background-color: #0891b2;
+  color: whitesmoke;
+  border-bottom-left-radius: 5px;
 }
 
 .image_looks_size {

@@ -11,6 +11,9 @@ const initialState = {
   searchedText: "",
   cartBox: [],
   wishlistBox: [],
+  filterByRating: "",
+  sortByPrice: "",
+  roundPrice: 0,
 };
 
 const ProductProvider = ({ children }) => {
@@ -39,11 +42,17 @@ const ProductProvider = ({ children }) => {
       case "HIGH_PRICE_HANDLER":
         return { ...state, initialProductData: action.payload };
 
-      case "REVIEW_SORTING":
-        return { ...state, initialProductData: action.payload };
+      case "SORTING_BY_PRICE":
+        return { ...state, sortByPrice: action.payload };
+
+      // case "REVIEW_SORTING":
+      //   return { ...state, initialProductData: action.payload };
+
+      case "FILTER_BY_RATING":
+        return { ...state, filterByRating: action.payload };
 
       case "PRICE_HANDLER":
-        return { ...state, initialProductData: action.payload };
+        return { ...state, roundPrice: action.payload };
 
       case "DISCOUNT_HANDLER":
         return { ...state, filtersList: action.payload };
@@ -56,6 +65,10 @@ const ProductProvider = ({ children }) => {
           // isLoading: false,
           // errorMsg: "",
           filtersList: [],
+          filterByRating: "",
+          roundPrice: 0,
+          sortByPrice: "",
+          // sortingValue: [],
           // searchedText: "",
         };
 
@@ -98,19 +111,23 @@ const ProductProvider = ({ children }) => {
 
   // sorting
 
-  const lowPriceHandler = () => {
-    const lowPriceProduct = state?.initialProductData?.sort(
-      (a, b) => a.price - b.price
-    );
+  // const lowPriceHandler = () => {
+  //   const lowPriceProduct = state?.initialProductData?.sort(
+  //     (a, b) => a.price - b.price
+  //   );
 
-    dispatch({ type: "LOW_PRICE_HANDLER", payload: lowPriceProduct });
-  };
+  //   dispatch({ type: "LOW_PRICE_HANDLER", payload: lowPriceProduct });
+  // };
 
-  const highPriceHandler = () => {
-    const highPriceProduct = state?.initialProductData?.sort(
-      (a, b) => b.price - a.price
-    );
-    dispatch({ type: "HIGH_PRICE_HANDLER", payload: highPriceProduct });
+  // const highPriceHandler = () => {
+  //   const highPriceProduct = state?.initialProductData?.sort(
+  //     (a, b) => b.price - a.price
+  //   );
+  //   dispatch({ type: "HIGH_PRICE_HANDLER", payload: highPriceProduct });
+  // };
+
+  const priceSortingHandler = (event) => {
+    dispatch({ type: "SORTING_BY_PRICE", payload: event.target.value });
   };
 
   // ReviewSorting
@@ -118,22 +135,16 @@ const ProductProvider = ({ children }) => {
   const reviewSortingHandler = (event) => {
     console.log(typeof +event.target.value);
 
-    const ratingFilteredProduct = state?.storeInitialData?.filter(
-      (product) => product?.rating >= +event.target.value
-    );
-
-    console.log(ratingFilteredProduct);
-
-    dispatch({ type: "REVIEW_SORTING", payload: ratingFilteredProduct });
+    dispatch({ type: "FILTER_BY_RATING", payload: +event.target.value });
   };
 
   // roundPrice
   const roundPriceHandler = (event) => {
-    const priceFilteredProduct = state?.storeInitialData?.filter(
-      (product) => product?.price > event.target.value
-    );
+    // const priceFilteredProduct = state?.storeInitialData?.filter(
+    //   (product) => product?.price > event.target.value
+    // );
 
-    dispatch({ type: "PRICE_HANDLER", payload: priceFilteredProduct });
+    dispatch({ type: "PRICE_HANDLER", payload: event.target.value });
   };
 
   // clear filters
@@ -202,7 +213,6 @@ const ProductProvider = ({ children }) => {
 
   useEffect(() => {
     getProductData();
-    getCartProduct();
   }, []);
 
   // cart
@@ -219,7 +229,7 @@ const ProductProvider = ({ children }) => {
       });
 
       const data = await response.json();
-      console.log(data?.cart);
+      // console.log(data?.cart);
 
       dispatch({ type: "CART_ADDED", payload: data?.cart });
     } catch (error) {
@@ -227,11 +237,32 @@ const ProductProvider = ({ children }) => {
     }
   };
 
-  // getCartProduct();
-
   useEffect(() => {
     getCartProduct();
   }, []);
+
+  const removeFromCartHandler = async (product) => {
+    try {
+      const response = await fetch(`/api/user/cart/:${product?.id}`, {
+        method: "DELETE",
+        header: {
+          authorization: token,
+        },
+      });
+
+      const data = await response.json();
+
+      const updatedCart = state?.cartBox.filter(
+        (item) => item?.id !== product?.id
+      );
+
+      dispatch({ type: "CART_ADDED", payload: updatedCart });
+
+      dispatch({});
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
@@ -239,14 +270,16 @@ const ProductProvider = ({ children }) => {
         value={{
           state,
           dispatch,
-          lowPriceHandler,
-          highPriceHandler,
+          priceSortingHandler,
+          // lowPriceHandler,
+          // highPriceHandler,
           reviewSortingHandler,
           roundPriceHandler,
           clearFilters,
           checkBoxHandler,
           discountHandler,
           categoriesFilter,
+          removeFromCartHandler,
           // searchProductHandler,
         }}
       >

@@ -3,10 +3,12 @@ import { useContext } from "react";
 import "./ProductDisplay.css";
 import { AuthContext } from "../Auth/AuthProvider";
 import { Link } from "react-router-dom";
+import { ProductContext } from "../ProductProvider/ProductProvider";
+import { HiOutlineHeart } from "react-icons/hi";
 
 const ProductDisplay = ({ product }) => {
-  const { token } = useContext(AuthContext);
-  // const tokens = localStorage.getItem("token");
+  const { dispatch } = useContext(ProductContext);
+  const token = localStorage.getItem("token");
   // console.log(tokens);
 
   const tilteLength = (str) => {
@@ -50,8 +52,10 @@ const ProductDisplay = ({ product }) => {
       // console.log(response);
       // console.log(3);
 
-      const data = await response.json();
+      // const data = await response.json();
       // console.log(data, "cart");
+
+      // dispatch({ type: "CART_ADDED", payload: data?.cart });
     } catch (error) {
       // console.log(2);
       console.log(error);
@@ -114,7 +118,7 @@ const ProductDisplay = ({ product }) => {
           onClick={() => addToWishListHandler(product)}
           className="image_looks image_looks_wishlist"
         >
-          Wishlist
+          <HiOutlineHeart className="nav_logo" />
         </button>
 
         <button

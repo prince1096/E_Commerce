@@ -9,6 +9,7 @@
 .individual_image_container,
 .individual_detailing {
   /* border: 2px solid; */
+  /* padding: 1rem; */
   width: 270px;
   height: 300px;
   position: relative;
@@ -16,7 +17,8 @@
 }
 
 .individual_detailing {
-  box-shadow: 5px 5px 20px 5px #999;
+  /* box-shadow: 5px 5px 20px 5px #999; */
+  box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.11);
 }
 
 .individual_trending {

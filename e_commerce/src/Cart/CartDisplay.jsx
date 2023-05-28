@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import "./Cart.css";
+import { ProductContext } from "../ProductProvider/ProductProvider";
 
 const CartDisplay = ({ product }) => {
-  console.log(product);
+  const { removeFromCartHandler } = useContext(ProductContext);
+
+  // const token = localStorage.getItem("token");
 
   return (
     <div>
@@ -34,7 +37,12 @@ const CartDisplay = ({ product }) => {
             <span> 1 </span> <button className="plus_quantity_button">+</button>
           </div>
 
-          <button className="cart_remove_button">Remove from Cart</button>
+          <button
+            className="cart_remove_button"
+            onClick={() => removeFromCartHandler(product)}
+          >
+            Remove from Cart
+          </button>
         </div>
       </div>
     </div>
