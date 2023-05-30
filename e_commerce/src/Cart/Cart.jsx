@@ -36,7 +36,7 @@ const Cart = () => {
     getCartProduct();
   }, []);
 
-  const totalItems = state?.cartBox.reduce(
+  const totalItems = state?.cartBox?.reduce(
     (acc, item) => [
       ...acc,
       { title: item?.title, price: item?.price, quantity: 1 },
@@ -44,14 +44,14 @@ const Cart = () => {
     []
   );
 
-  const totalPrice = totalItems.reduce(
+  const totalPrice = totalItems?.reduce(
     (acc, item) => acc + item?.price * item?.quantity,
     0
   );
 
   return (
     <div>
-      {state?.cartBox.length === 0 ? (
+      {state?.cartBox?.length === 0 ? (
         <div>
           <h2>Empty Cart Start shopping </h2>
         </div>

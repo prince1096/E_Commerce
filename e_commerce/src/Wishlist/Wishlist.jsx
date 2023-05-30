@@ -1,11 +1,11 @@
 import { useContext, useEffect } from "react";
 import { ProductContext } from "../ProductProvider/ProductProvider";
-import ProductDisplay from "../Product/ProductDisplay";
+// import ProductDisplay from "../Product/ProductDisplay";
 
 import "./Wishlist.css";
 import WishlistDisplay from "./WishlistDisplay";
 
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Wishlist = () => {
@@ -35,7 +35,7 @@ const Wishlist = () => {
     getWishlistProduct();
   }, []);
 
-  console.log(state?.wishlistBox);
+  // console.log(state?.wishlistBox);
 
   return (
     <div>

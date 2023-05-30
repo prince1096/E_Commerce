@@ -5,10 +5,13 @@ import disclogo from "../assets/dislogo.jpg";
 
 import "./Discount.css";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { ProductContext } from "../ProductProvider/ProductProvider";
 
 const Discount = () => {
-  const { state } = useContext(ProductContext);
+  const { state, discountFilter } = useContext(ProductContext);
+
+  const discountValue = ["10", "20", "30", "40", "50"];
 
   return (
     <div>
@@ -21,13 +24,25 @@ const Discount = () => {
       <div className="wrapper">
         <div className="discount_container">
           <div className="plan">
-            <img src={twenty} alt="" width="300px" />
+            <Link to="/products">
+              <button onClick={() => discountFilter(discountValue.slice(0, 2))}>
+                <img src={twenty} alt="" width="300px" />
+              </button>
+            </Link>
           </div>
           <div className="plan plan-highlight">
-            <img src={fifty} alt="" width="300px" />
+            <Link to="/products">
+              <button onClick={() => discountFilter(discountValue.slice(0, 3))}>
+                <img src={thirty} alt="" width="300px" />
+              </button>
+            </Link>
           </div>
           <div className="plan">
-            <img src={thirty} alt="" width="300px" />
+            <Link to="/products">
+              <button onClick={() => discountFilter(discountValue.slice())}>
+                <img src={fifty} alt="" width="300px" />
+              </button>
+            </Link>
           </div>
         </div>
       </div>

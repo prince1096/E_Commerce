@@ -26,3 +26,33 @@
 .hide_filter_responsive {
   display: none;
 }
+
+.pagination {
+  margin: 1rem;
+  text-align: center;
+}
+
+.previous_page_product,
+.next_page_product {
+  background-color: whitesmoke;
+  color: #0891b2;
+  padding: 0.3rem 0.7rem;
+  margin: 0.5rem;
+  font-size: 18px;
+  font-weight: bolder;
+}
+
+.current_page_product {
+  background-color: #0891b2;
+  color: whitesmoke;
+  padding: 0.3rem 0.7rem;
+  margin: 0.5rem;
+  font-size: 18px;
+  font-weight: bolder;
+}
+
+.pagination_arrow {
+  color: #0891b2;
+  font-size: 18px;
+  margin: 0 0.5rem;
+}

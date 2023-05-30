@@ -130,26 +130,44 @@ const Products = () => {
       {/* Pagination */}
       {sortingPriceProduct?.length > 0 && (
         <div className="pagination">
-          {page !== 1 && <span onClick={() => prevPageHandler()}>◀</span>}
+          {page !== 1 && (
+            <span
+              onClick={() => prevPageHandler()}
+              className="pagination_arrow"
+            >
+              ◀
+            </span>
+          )}
 
           {page !== 1 && (
-            <span onClick={() => paginationHandler(page - 1)}>
+            <span
+              onClick={() => paginationHandler(page - 1)}
+              className="previous_page_product"
+            >
               {" "}
               {page - 1}{" "}
             </span>
           )}
 
-          <span>{page}</span>
+          <span className="current_page_product">{page}</span>
 
           {page !== Math.ceil(sortingPriceProduct?.length / 8) && (
-            <span onClick={() => paginationHandler(page + 1)}>
+            <span
+              onClick={() => paginationHandler(page + 1)}
+              className="next_page_product"
+            >
               {" "}
               {page + 1}{" "}
             </span>
           )}
 
           {page !== Math.ceil(sortingPriceProduct?.length / 8) && (
-            <span onClick={() => nextPageHandler()}>▶</span>
+            <span
+              onClick={() => nextPageHandler()}
+              className="pagination_arrow"
+            >
+              ▶
+            </span>
           )}
         </div>
       )}

@@ -19,6 +19,8 @@ import { ProductContext } from "../ProductProvider/ProductProvider";
 const Category = () => {
   const { state, categoriesFilter } = useContext(ProductContext);
 
+  // we can map here.
+
   return (
     <div className="categorywise_container">
       <div className="categorylist_container">

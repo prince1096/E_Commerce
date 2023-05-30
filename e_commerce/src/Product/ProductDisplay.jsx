@@ -23,7 +23,7 @@ const ProductDisplay = ({ product }) => {
 
   // console.log(state?.cartBox.includes(product));
 
-  const cartBoxItem = state?.cartBox.find((item) => item?.id === product?.id);
+  const cartBoxItem = state?.cartBox?.find((item) => item?.id === product?.id);
 
   // console.log(cartBoxItem);
   // console.log(state?.cartBox.includes(product));

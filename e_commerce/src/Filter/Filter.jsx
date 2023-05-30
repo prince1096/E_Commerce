@@ -107,8 +107,8 @@ const Filter = ({ showFilter, setShowFilter, filterHandler }) => {
       <div className="filter_product">
         <h3>Ratings</h3>
 
-        {ratings.map((rating) => (
-          <label htmlFor={rating}>
+        {ratings.map((rating, index) => (
+          <label htmlFor={rating} key={index}>
             {" "}
             <input
               type="radio"
@@ -194,7 +194,7 @@ const Filter = ({ showFilter, setShowFilter, filterHandler }) => {
               id={sortedValue}
               value={sortedValue}
               checked={sortedValue === state?.sortByPrice}
-              onClick={priceSortingHandler}
+              onChange={priceSortingHandler}
             />{" "}
             price- {sortedValue === "lowToHigh" ? "Low To High" : "High To Low"}{" "}
           </label>

@@ -35,13 +35,40 @@ const responsive = {
 
 const CarouselHome = () => {
   const imageArr = [
-    mobiles_logo,
-    laptop,
-    family_fashion,
-    grocery,
-    Home_appliances,
-    autopart,
-    NewArrival,
+    {
+      image: mobiles_logo,
+      value: "smartphones",
+    },
+
+    {
+      image: laptop,
+      value: "laptops",
+    },
+
+    {
+      image: family_fashion,
+      value: "fashion",
+    },
+
+    {
+      image: grocery,
+      value: "groceries",
+    },
+
+    {
+      image: Home_appliances,
+      value: "home-appliances",
+    },
+
+    {
+      image: autopart,
+      value: "automotivevehicle",
+    },
+
+    {
+      image: NewArrival,
+      value: "",
+    },
   ];
 
   return (
@@ -67,7 +94,7 @@ const CarouselHome = () => {
         // itemClass="carousel-item-padding-40-px"
       >
         {imageArr.map((image, index) => (
-          <ImageCarousel imgName={image} key={index} />
+          <ImageCarousel imgDetails={image} key={index} />
         ))}
       </Carousel>
     </div>
