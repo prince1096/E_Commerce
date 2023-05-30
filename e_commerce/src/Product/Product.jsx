@@ -87,12 +87,12 @@ const Products = () => {
   );
 
   const sortingPriceProduct = state?.sortByPrice
-    ? roundPriceFilteredProduct?.sort((a, b) =>
+    ? [...roundPriceFilteredProduct]?.sort((a, b) =>
         state?.sortByPrice === "lowToHigh"
           ? a.price - b.price
           : b.price - a.price
       )
-    : roundPriceFilteredProduct;
+    : [...roundPriceFilteredProduct];
 
   return (
     // <div>
@@ -118,7 +118,7 @@ const Products = () => {
             />
           </div>
           <div className={`main_container_product  `}>
-            {roundPriceFilteredProduct
+            {sortingPriceProduct
               ?.slice((page - 1) * 8, page * 8)
               .map((product) => (
                 <ProductDisplay key={product?.id} product={product} />
@@ -128,7 +128,7 @@ const Products = () => {
       </div>
 
       {/* Pagination */}
-      {roundPriceFilteredProduct?.length > 0 && (
+      {sortingPriceProduct?.length > 0 && (
         <div className="pagination">
           {page !== 1 && <span onClick={() => prevPageHandler()}>◀</span>}
 
@@ -141,14 +141,14 @@ const Products = () => {
 
           <span>{page}</span>
 
-          {page !== Math.ceil(roundPriceFilteredProduct?.length / 8) && (
+          {page !== Math.ceil(sortingPriceProduct?.length / 8) && (
             <span onClick={() => paginationHandler(page + 1)}>
               {" "}
               {page + 1}{" "}
             </span>
           )}
 
-          {page !== Math.ceil(roundPriceFilteredProduct?.length / 8) && (
+          {page !== Math.ceil(sortingPriceProduct?.length / 8) && (
             <span onClick={() => nextPageHandler()}>▶</span>
           )}
         </div>

@@ -1,5 +1,8 @@
 import { createContext, useEffect, useReducer } from "react";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export const ProductContext = createContext();
 
 const initialState = {
@@ -264,6 +267,76 @@ const ProductProvider = ({ children }) => {
     }
   };
 
+  const addToCartHandler = async (product) => {
+    // console.log(token, "cart");
+    try {
+      // console.log(1);
+      const response = await fetch("/api/user/cart", {
+        method: "POST",
+        headers: {
+          authorization: token,
+        },
+        body: JSON.stringify({ product }),
+      });
+
+      toast.success("Item added to cart", {
+        position: "bottom-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+
+      // console.log(response);
+      // console.log(3);
+
+      // const data = await response.json();
+      // console.log(data, "cart");
+
+      // dispatch({ type: "CART_ADDED", payload: data?.cart });
+    } catch (error) {
+      // console.log(2);
+      console.log(error);
+    }
+  };
+
+  const addToWishListHandler = async (product) => {
+    console.log(token, "wishlist");
+    try {
+      // console.log(1);
+      const response = await fetch("/api/user/wishlist", {
+        method: "POST",
+        headers: {
+          authorization: token,
+        },
+        body: JSON.stringify({ product }),
+      });
+      // console.log(response);
+      // console.log(3);
+
+      const data = await response.json();
+
+      toast.success("Item added to wishlist", {
+        position: "bottom-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+
+      // console.log(data, "wishlist");
+    } catch (error) {
+      // console.log(2);
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <ProductContext.Provider
@@ -280,6 +353,8 @@ const ProductProvider = ({ children }) => {
           discountHandler,
           categoriesFilter,
           removeFromCartHandler,
+          addToCartHandler,
+          addToWishListHandler,
           // searchProductHandler,
         }}
       >

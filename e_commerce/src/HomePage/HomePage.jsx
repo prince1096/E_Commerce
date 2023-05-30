@@ -8,7 +8,6 @@ const HomePage = () => {
   return (
     <div>
       {/* <NavBar /> */}
-      {/* <button onClick={() => fetchData()}>getData</button> */}
       <CarouselHome />
       <Discount />
       <Footer />

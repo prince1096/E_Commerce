@@ -201,27 +201,6 @@ const Filter = ({ showFilter, setShowFilter, filterHandler }) => {
             price- {sortedValue === "lowToHigh" ? "Low To High" : "High To Low"}{" "}
           </label>
         ))}
-
-        {/* <label htmlFor="lowtohigh">
-          {" "}
-          <input
-            type="radio"
-            name="radiosort"
-            id="lowtohigh"
-            onClick={lowPriceHandler}
-          />{" "}
-          price- Low To High{" "}
-        </label>
-        <label htmlFor="hightolow">
-          {" "}
-          <input
-            type="radio"
-            name="radiosort"
-            id="hightolow"
-            onClick={highPriceHandler}
-          />{" "}
-          price- High To Low{" "}
-        </label> */}
       </div>
     </div>
   );

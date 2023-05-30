@@ -8,6 +8,10 @@ const SearchedProduct = ({ products }) => {
     return str?.length > 30 ? str.slice(0, 29) + "..." : str;
   };
 
+  const nameLength = (str) => {
+    return str?.length > 15 ? str.slice(0, 14) + "..." : str;
+  };
+
   return (
     <Link
       to={`/individualproduct/${products.id}`}
@@ -26,7 +30,7 @@ const SearchedProduct = ({ products }) => {
 
         <div className="searched_product_details">
           <div className="searched_product_pricing">
-            <p>{products?.title}</p>
+            <p>{nameLength(products?.title)}</p>
             <p>${products?.price}</p>
           </div>
 

@@ -7,7 +7,7 @@
   width: 350px;
   display: grid;
   grid-template-columns: auto 1fr;
-  box-shadow: 1px 1px 15px 1px #bdc7b3;
+  box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.1);
   /* gap: 15px; */
   margin: 15px 5px;
 }

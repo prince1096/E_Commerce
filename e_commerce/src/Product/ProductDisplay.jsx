@@ -6,8 +6,12 @@ import { Link } from "react-router-dom";
 import { ProductContext } from "../ProductProvider/ProductProvider";
 import { HiOutlineHeart } from "react-icons/hi";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const ProductDisplay = ({ product }) => {
-  const { dispatch } = useContext(ProductContext);
+  const { dispatch, addToCartHandler, addToWishListHandler } =
+    useContext(ProductContext);
   const token = localStorage.getItem("token");
   // console.log(tokens);
 
@@ -37,52 +41,6 @@ const ProductDisplay = ({ product }) => {
   //     console.log(error);
   //   }
   // };
-
-  const addToCartHandler = async (product) => {
-    // console.log(token, "cart");
-    try {
-      // console.log(1);
-      const response = await fetch("/api/user/cart", {
-        method: "POST",
-        headers: {
-          authorization: token,
-        },
-        body: JSON.stringify({ product }),
-      });
-      // console.log(response);
-      // console.log(3);
-
-      // const data = await response.json();
-      // console.log(data, "cart");
-
-      // dispatch({ type: "CART_ADDED", payload: data?.cart });
-    } catch (error) {
-      // console.log(2);
-      console.log(error);
-    }
-  };
-
-  const addToWishListHandler = async (product) => {
-    console.log(token, "wishlist");
-    try {
-      // console.log(1);
-      const response = await fetch("/api/user/wishlist", {
-        method: "POST",
-        headers: {
-          authorization: token,
-        },
-        body: JSON.stringify({ product }),
-      });
-      // console.log(response);
-      // console.log(3);
-
-      const data = await response.json();
-      // console.log(data, "wishlist");
-    } catch (error) {
-      // console.log(2);
-      console.log(error);
-    }
-  };
 
   // <Link to={`/ProductDetail/${item.id}`}> Visit Item </Link>
 
@@ -127,6 +85,19 @@ const ProductDisplay = ({ product }) => {
         >
           Add to Cart
         </button>
+
+        <ToastContainer
+          position="bottom-right"
+          autoClose={1000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
       </div>
     </div>
   );

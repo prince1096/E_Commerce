@@ -12,11 +12,15 @@ import Login from "./Login/Login";
 import Signup from "./Login/SignUp";
 import UserProfile from "./Login/UserProfile";
 import IndividualProduct from "./IndividualProduct/IndividualProduct";
+// import Navbar2 from "./NavBar/NavBar2";
 
 function App() {
   return (
     <div className="App">
-      <NavBar />
+      <div className="NavbarInApp">
+        <NavBar />
+      </div>
+      {/* <Navbar2 /> */}
 
       {/* <NavLink to="/">Home</NavLink> */}
 
