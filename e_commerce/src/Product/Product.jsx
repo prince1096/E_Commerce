@@ -69,8 +69,8 @@ const Products = () => {
         )
       : state?.initialProductData;
 
-  console.log(state?.filterByRating);
-  console.log(filteredProducts);
+  // console.log(state?.filterByRating);
+  // console.log(filteredProducts);
 
   const ratingFilteredProduct = state?.filterByRating
     ? filteredProducts?.filter(
@@ -78,9 +78,9 @@ const Products = () => {
       )
     : filteredProducts;
 
-  console.log(ratingFilteredProduct);
+  // console.log(ratingFilteredProduct);
 
-  console.log(state?.roundPrice);
+  // console.log(state?.roundPrice);
 
   const roundPriceFilteredProduct = ratingFilteredProduct?.filter(
     (product) => product?.price > state?.roundPrice

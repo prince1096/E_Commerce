@@ -259,9 +259,20 @@ const ProductProvider = ({ children }) => {
         (item) => item?.id !== product?.id
       );
 
+      toast.warn("Item removed", {
+        position: "bottom-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+
       dispatch({ type: "CART_ADDED", payload: updatedCart });
 
-      dispatch({});
+      // dispatch({});
     } catch (error) {
       console.log(error);
     }
@@ -337,6 +348,39 @@ const ProductProvider = ({ children }) => {
     }
   };
 
+  const removeFromWishListHandler = async (product) => {
+    try {
+      const response = await fetch(`/api/user/cart/:${product?.id}`, {
+        method: "DELETE",
+        header: {
+          authorization: token,
+        },
+      });
+
+      const data = await response.json();
+
+      const updatedWishlist = state?.wishlistBox.filter(
+        (item) => item?.id !== product?.id
+      );
+
+      //   dispatch({ type: "CART_ADDED", payload: updatedCart });
+      dispatch({ type: "WISHLIST_ADDED", payload: updatedWishlist });
+
+      toast.warn("Removed from Wishlist", {
+        position: "bottom-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <ProductContext.Provider
@@ -355,6 +399,7 @@ const ProductProvider = ({ children }) => {
           removeFromCartHandler,
           addToCartHandler,
           addToWishListHandler,
+          removeFromWishListHandler,
           // searchProductHandler,
         }}
       >

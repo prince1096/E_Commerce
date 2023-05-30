@@ -7,18 +7,30 @@
 .filter_product {
   display: flex;
   flex-direction: column;
+
   /* align-items: start; */
 }
 
 .filter_container {
   width: 100%;
   text-align: start;
-  border: 3px solid;
+  background-color: whitesmoke;
+  /* border: 3px solid; */
+  box-shadow: 0 3px 16px 0px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin-left: 1rem;
 }
 
 .filter_clear {
   display: flex;
   justify-content: space-between;
+}
+
+.filter_clear button {
+  border: none;
+  background-color: whitesmoke;
+  color: #0891b2;
+  font-size: 15px;
 }
 
 .range_input {
@@ -46,7 +58,7 @@
 .show_filter_button {
   width: 100%;
   padding: 1rem;
-  background-color: fuchsia;
+  background-color: #0891b2;
   margin-top: 1.5rem;
   position: sticky;
   bottom: 0;

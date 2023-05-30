@@ -7,8 +7,6 @@ const Filter = ({ showFilter, setShowFilter, filterHandler }) => {
     state,
     // dispatch,
     priceSortingHandler,
-    lowPriceHandler,
-    highPriceHandler,
     reviewSortingHandler,
     roundPriceHandler,
     clearFilters,

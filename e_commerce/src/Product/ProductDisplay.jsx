@@ -2,7 +2,7 @@
 import { useContext } from "react";
 import "./ProductDisplay.css";
 import { AuthContext } from "../Auth/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ProductContext } from "../ProductProvider/ProductProvider";
 import { HiOutlineHeart } from "react-icons/hi";
 
@@ -10,39 +10,23 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ProductDisplay = ({ product }) => {
-  const { dispatch, addToCartHandler, addToWishListHandler } =
+  const { state, addToCartHandler, addToWishListHandler } =
     useContext(ProductContext);
   const token = localStorage.getItem("token");
   // console.log(tokens);
+
+  const navigate = useNavigate();
 
   const tilteLength = (str) => {
     return str?.length > 15 ? str.slice(0, 14) + "..." : str;
   };
 
-  // const addToCartHandlesr = async (product) => {
-  //   console.log(token, "cart");
-  //   console.log(product);
-  //   try {
-  //     // console.log(1);
-  //     const response = await fetch("/api/user/cart", {
-  //       method: "POST",
-  //       body: JSON.stringify({ product }),
+  // console.log(state?.cartBox.includes(product));
 
-  //       header: {
-  //         authorization: `${token}`,
-  //       },
-  //     });
-  //     console.log(response);
-  //     // console.log(3);
-  //     const data = await response.json();
-  //     console.log(data, "cart");
-  //   } catch (error) {
-  //     // console.log(2);
-  //     console.log(error);
-  //   }
-  // };
+  const cartBoxItem = state?.cartBox.find((item) => item?.id === product?.id);
 
-  // <Link to={`/ProductDetail/${item.id}`}> Visit Item </Link>
+  // console.log(cartBoxItem);
+  // console.log(state?.cartBox.includes(product));
 
   return (
     <div>
@@ -60,13 +44,6 @@ const ProductDisplay = ({ product }) => {
           <h3> {tilteLength(product?.title)}</h3>
           <span className="product_span">${product?.price}</span>
 
-          {/* <button
-            onClick={() => addToWishListHandler(product)}
-            className="image_looks image_looks_wishlist"
-          >
-            Heart
-          </button> */}
-
           {product?.trending && (
             <div className="image_looks image_looks_trending">Trending</div>
           )}
@@ -76,15 +53,40 @@ const ProductDisplay = ({ product }) => {
           onClick={() => addToWishListHandler(product)}
           className="image_looks image_looks_wishlist"
         >
-          <HiOutlineHeart className="nav_logo" />
+          <HiOutlineHeart className="nav_logo_product" />
         </button>
 
-        <button
-          className="cart_button"
-          onClick={() => addToCartHandler(product)}
-        >
-          Add to Cart
-        </button>
+        {/* {state?.cartBox.includes(product) ? (
+          <button
+            className="cart_button cart_button_added"
+            onClick={() => navigate("/cart")}
+          >
+            Go To Cart
+          </button>
+        ) : (
+          <button
+            className="cart_button"
+            onClick={() => addToCartHandler(product)}
+          >
+            Add to Cart
+          </button>
+        )} */}
+
+        {cartBoxItem ? (
+          <button
+            className="cart_button cart_button_added"
+            onClick={() => navigate("/cart")}
+          >
+            Go To Cart
+          </button>
+        ) : (
+          <button
+            className="cart_button"
+            onClick={() => addToCartHandler(product)}
+          >
+            Add to Cart
+          </button>
+        )}
 
         <ToastContainer
           position="bottom-right"

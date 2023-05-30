@@ -2,6 +2,9 @@ import { useContext, useEffect } from "react";
 import { ProductContext } from "../ProductProvider/ProductProvider";
 import CartDisplay from "./CartDisplay";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import "./Cart.css";
 
 const Cart = () => {
@@ -49,12 +52,14 @@ const Cart = () => {
   return (
     <div>
       {state?.cartBox.length === 0 ? (
-        <h2>Empty Cart Start shopping </h2>
+        <div>
+          <h2>Empty Cart Start shopping </h2>
+        </div>
       ) : (
         <div className="cart_display_page">
           <div>
             {state?.cartBox?.map((product) => (
-              <CartDisplay product={product} />
+              <CartDisplay key={product?.id} product={product} />
             ))}
           </div>
 
@@ -83,6 +88,19 @@ const Cart = () => {
           </div>
         </div>
       )}
+
+      <ToastContainer
+        position="bottom-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 };

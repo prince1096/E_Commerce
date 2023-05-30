@@ -4,6 +4,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 // import axios from "axios";
 import { AuthContext } from "../Auth/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const encodedToken = localStorage.getItem("token");
@@ -22,6 +24,17 @@ const Login = () => {
     if (!loginData) {
       return;
     }
+
+    toast.success("Login Successful", {
+      position: "bottom-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
 
     event.preventDefault();
     try {
@@ -47,6 +60,7 @@ const Login = () => {
       console.log(data);
     } catch (error) {
       console.log(error);
+    } finally {
     }
   };
 
@@ -85,6 +99,20 @@ const Login = () => {
           Login
         </button>
       </form>
+
+      <ToastContainer
+        position="bottom-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
+
       <Link to="/signup"> Create a New Account </Link>
     </div>
   );

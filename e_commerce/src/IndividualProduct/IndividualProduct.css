@@ -30,7 +30,6 @@
   font-weight: bold;
   display: inline;
   padding: 2px;
-  /* border: 2px solid red; */
 }
 
 .individual_rating {
@@ -38,7 +37,7 @@
   bottom: 0;
   right: 0;
 
-  background-color: rgb(47, 134, 255);
+  background-color: #0891b2;
   color: whitesmoke;
   font-weight: bold;
   display: inline;
@@ -51,7 +50,7 @@
   top: 0;
   right: 0;
 
-  background-color: rgb(47, 134, 255);
+  background-color: #0891b2;
   color: whitesmoke;
   font-weight: bold;
   display: inline;
@@ -98,7 +97,7 @@
 .individual_addtocart {
   /* font-size : 18px; */
   /* margin-top: 10px; */
-  background-color: rgb(47, 134, 255);
+  background-color: #0891b2;
   color: white;
   border: none;
   padding: 10px 16px;
