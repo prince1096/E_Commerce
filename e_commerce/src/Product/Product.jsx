@@ -10,8 +10,8 @@ import Category from "../Category/Category";
 
 const Products = () => {
   const { state } = useContext(ProductContext);
-  const [showModal, setShowModal] = useState(false);
-  const [showFilter, setShowFilter] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
+  const [showFilters, setShowFilter] = useState(false);
 
   // console.log(state);
 
@@ -104,19 +104,13 @@ const Products = () => {
 
         <div className="product_listing_page_container">
           <div
-            // className={` filter_infetch ${
-            //   showFilter ? "hide_filter_responsive" : "show_filter_responsive"
-            // } `}
+            className="filter_infetch hide_filter_responsive "
 
-            className="filter_infetch"
+            // className="filter_infetch"
           >
-            <Filter
-              // showFilter={showFilter}
-              // setShowFilter={setShowFilter}
-
-              filterHandler={filterHandler}
-            />
+            <Filter filterHandler={filterHandler} />
           </div>
+
           <div className={`main_container_product  `}>
             {sortingPriceProduct
               ?.slice((page - 1) * 8, page * 8)
@@ -172,9 +166,19 @@ const Products = () => {
         </div>
       )}
 
-      <button className={`show_filter_button`} onClick={filterHandler}>
+      <button
+        className="show_filter_button"
+        onClick={() => setShowFilter(true)}
+      >
         ShowFilters
       </button>
+
+      {showFilters && (
+        <div className="hide_filter_component">
+          <button onClick={() => setShowFilter(false)}>HideFilters</button>
+          <Filter />
+        </div>
+      )}
     </div>
     // </div>
   );

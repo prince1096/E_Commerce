@@ -41,7 +41,7 @@ const Footer = () => {
           <a
             target="_blank"
             className="footer_button_links"
-            href="https://www.instagram.com/codewithprinceraj/"
+            href="https://www.linkedin.com/in/prince-raj-a11444126/"
             rel="noreferrer"
           >
             <GrLinkedin />
@@ -50,7 +50,7 @@ const Footer = () => {
           <a
             target="_blank"
             className="footer_button_links"
-            href="https://www.instagram.com/codewithprinceraj/"
+            href="https://twitter.com/prince101296raj"
             rel="noreferrer"
           >
             <SlSocialTwitter />
@@ -59,7 +59,7 @@ const Footer = () => {
           <a
             target="_blank"
             className="footer_button_links"
-            href="https://www.instagram.com/codewithprinceraj/"
+            href="https://github.com/prince1096"
             rel="noreferrer"
           >
             <SiGithub />

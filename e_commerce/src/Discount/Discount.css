@@ -10,12 +10,17 @@
 }
 
 .plan {
+  /* width: 200px; */
   background-color: white;
   background-color: #0891b2;
   color: white;
   padding: 30px;
   border-radius: 10px;
   box-shadow: 6px 6px 50px -35px rgba(0, 0, 0, 0.75);
+}
+
+.plan_image_div {
+  /* width: 200px; */
 }
 
 .plan-highlight {

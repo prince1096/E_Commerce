@@ -78,4 +78,11 @@ p {
 
 .nav_logo_product {
   font-size: 24px;
+  /* color: red; */
+  /* background-color: red; */
+}
+
+.wishlist_heart {
+  fill: red;
+  color: red;
 }

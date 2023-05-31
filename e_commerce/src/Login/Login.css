@@ -97,32 +97,3 @@ Generic Styles * {
 }
 
 /* UserProfile */
-
-.userprofile_container {
-  /* border: 2px solid black; */
-  /* height: 300px; */
-  width: 20rem;
-  margin: 5px auto;
-  padding: 1rem;
-  box-shadow: 3px 3px 20px 8px #888;
-}
-
-.user_profile_details {
-  padding: 10px;
-  margin: 1.5rem auto;
-}
-
-.logout_button {
-  background-color: red;
-  padding: 0.3rem 0.5rem;
-  font-size: 18px;
-  /* position: relative; */
-  /* bottom: 0px; */
-  /* left: 0px; */
-}
-
-@media screen and (min-width: 931px) {
-  .userprofile_container {
-    width: 30rem;
-  }
-}

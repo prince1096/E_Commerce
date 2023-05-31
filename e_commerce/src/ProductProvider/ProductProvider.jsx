@@ -2,6 +2,7 @@ import { createContext, useEffect, useReducer } from "react";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 export const ProductContext = createContext();
 
@@ -17,6 +18,7 @@ const initialState = {
   filterByRating: "",
   sortByPrice: "",
   roundPrice: 0,
+  userScreen: "",
 };
 
 const ProductProvider = ({ children }) => {
@@ -79,11 +81,17 @@ const ProductProvider = ({ children }) => {
         return { ...state, searchedText: action.payload };
 
       case "CART_ADDED":
-        console.log(action.payload);
+        // console.log(action.payload);
+        return { ...state, cartBox: action.payload };
+
+      case "CART_REMOVED":
         return { ...state, cartBox: action.payload };
 
       case "WISHLIST_ADDED":
         return { ...state, wishlistBox: action.payload };
+
+      case "USER_DISPLAY":
+        return { ...state, userScreen: action.payload };
 
       default:
         return { ...state };
@@ -219,8 +227,6 @@ const ProductProvider = ({ children }) => {
 
   // cart
 
-  const token = localStorage.getItem("token");
-
   const getCartProduct = async () => {
     try {
       const response = await fetch("/api/user/cart", {
@@ -244,41 +250,29 @@ const ProductProvider = ({ children }) => {
     getCartProduct();
   }, [state?.cartBox]);
 
-  const addToCartHandler = async (product) => {
-    // console.log(token, "cart");
+  const token = localStorage.getItem("token");
+  const getWishlistProduct = async () => {
     try {
-      // console.log(1);
-      const response = await fetch("/api/user/cart", {
-        method: "POST",
+      const response = await fetch("/api/user/wishlist", {
+        method: "GET",
         headers: {
           authorization: token,
         },
-        body: JSON.stringify({ product }),
+        // body: JSON.stringify({ product }),
       });
 
-      toast.success("Item added to cart", {
-        position: "bottom-right",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      const data = await response.json();
+      // console.log(data?.wishlist);
 
-      // console.log(response);
-      // console.log(3);
-
-      // const data = await response.json();
-      // console.log(data, "cart");
-
-      // dispatch({ type: "CART_ADDED", payload: data?.cart });
+      dispatch({ type: "WISHLIST_ADDED", payload: data?.wishlist });
     } catch (error) {
-      // console.log(2);
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    getWishlistProduct();
+  }, [state?.wishlistBox]);
 
   const addToWishListHandler = async (product) => {
     // console.log(token, "wishlist");
@@ -306,35 +300,42 @@ const ProductProvider = ({ children }) => {
         progress: undefined,
         theme: "colored",
       });
-
-      // console.log(data, "wishlist");
     } catch (error) {
       // console.log(2);
       console.log(error);
     }
   };
 
+  // removeCartHandler
+
+  // const removeFromCartHandler = async (product) => {
+  //   try {
+  //     const {
+  //       data: { cart },
+  //     } = await axios.delete(`/api/user/cart/${product._id}`, {
+  //       headers: {
+  //         authorization: token,
+  //       },
+  //     });
+  //     dispatch({ type: "CART_ADDED", payload: cart });
+  //   } catch (e) {
+  //     console.log("error from cart delete handler");
+  //   }
+  // };
+
   const removeFromCartHandler = async (product) => {
     console.log(product);
-    console.log(token);
     try {
-      const response = await fetch(`/api/user/cart/:${product?.id}`, {
+      const response = await fetch(`/api/user/cart/${product?._id}`, {
         method: "DELETE",
-        header: {
+        headers: {
           authorization: token,
         },
       });
-      // /api/user/cart/:
 
       const data = await response.json();
-      console.log(data, "data");
 
-      const updatedCart = state?.cartBox.filter(
-        (item) => item?.id !== product?.id
-      );
-      console.log(updatedCart, "updatedCart");
-
-      dispatch({ type: "CART_ADDED", payload: updatedCart });
+      dispatch({ type: "CART_ADDED", payload: data?.cart });
 
       toast.warn("Item removed", {
         position: "bottom-right",
@@ -346,8 +347,6 @@ const ProductProvider = ({ children }) => {
         progress: undefined,
         theme: "colored",
       });
-
-      // dispatch({});
     } catch (error) {
       console.log(error);
     }
@@ -355,22 +354,17 @@ const ProductProvider = ({ children }) => {
 
   const removeFromWishListHandler = async (product) => {
     try {
-      const response = await fetch(`/api/user/wishlist/:${product?.id}`, {
+      const response = await fetch(`/api/user/wishlist/${product?._id}`, {
         method: "DELETE",
-        header: {
+        headers: {
           authorization: token,
         },
       });
 
       const data = await response.json();
+      console.log(data);
 
-      const updatedWishlist = state?.wishlistBox.filter(
-        (item) => item?.id !== product?.id
-      );
-
-      //   dispatch({ type: "CART_ADDED", payload: updatedCart });
-      dispatch({ type: "WISHLIST_ADDED", payload: updatedWishlist });
-
+      dispatch({ type: "WISHLIST_ADDED", payload: data?.wishlist });
       toast.warn("Removed from Wishlist", {
         position: "bottom-right",
         autoClose: 1000,
@@ -393,8 +387,6 @@ const ProductProvider = ({ children }) => {
           state,
           dispatch,
           priceSortingHandler,
-          // lowPriceHandler,
-          // highPriceHandler,
           reviewSortingHandler,
           roundPriceHandler,
           clearFilters,
@@ -402,7 +394,7 @@ const ProductProvider = ({ children }) => {
           discountHandler,
           categoriesFilter,
           removeFromCartHandler,
-          addToCartHandler,
+          // addToCartHandler,
           addToWishListHandler,
           removeFromWishListHandler,
           discountFilter,

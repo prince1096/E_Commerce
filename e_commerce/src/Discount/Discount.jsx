@@ -26,23 +26,25 @@ const Discount = () => {
           <div className="plan">
             <Link to="/products">
               <button onClick={() => discountFilter(discountValue.slice(0, 2))}>
-                <img src={twenty} alt="" width="300px" />
+                <img src={twenty} alt="" width="250px" />
               </button>
             </Link>
           </div>
           <div className="plan plan-highlight">
             <Link to="/products">
               <button onClick={() => discountFilter(discountValue.slice(0, 3))}>
-                <img src={thirty} alt="" width="300px" />
+                <img src={thirty} alt="" width="250px" />
               </button>
             </Link>
           </div>
           <div className="plan">
-            <Link to="/products">
-              <button onClick={() => discountFilter(discountValue.slice())}>
-                <img src={fifty} alt="" width="300px" />
-              </button>
-            </Link>
+            <div className="plan_image_div">
+              <Link to="/products">
+                <button onClick={() => discountFilter(discountValue.slice())}>
+                  <img src={fifty} alt="" width="250px" />
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

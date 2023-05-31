@@ -46,7 +46,7 @@ export const addItemToCartHandler = function (schema, request) {
     }
     const userCart = schema.users.findBy({ _id: userId }).cart;
     const { product } = JSON.parse(request.requestBody);
-    
+
     userCart.push({
       ...product,
       createdAt: formatDate(),
@@ -85,6 +85,8 @@ export const removeItemFromCartHandler = function (schema, request) {
     }
     let userCart = schema.users.findBy({ _id: userId }).cart;
     const productId = request.params.productId;
+    console.log(productId);
+    console.log(userCart.find((item) => item._id === productId));
     userCart = userCart.filter((item) => item._id !== productId);
     this.db.users.update({ _id: userId }, { cart: userCart });
     return new Response(200, {}, { cart: userCart });

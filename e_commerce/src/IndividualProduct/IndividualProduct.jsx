@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import "./IndividualProduct.css";
 import { HiOutlineHeart } from "react-icons/hi";
+import { AiFillHeart } from "react-icons/ai";
 
 import { useParams } from "react-router";
 import { ProductContext } from "../ProductProvider/ProductProvider";
@@ -10,7 +11,9 @@ const IndividualProduct = () => {
 
   const { productId } = useParams();
 
-  const product = state?.initialProductData?.find(({ id }) => id === productId);
+  const product = state?.initialProductData?.find(
+    ({ _id }) => _id === productId
+  );
 
   return (
     <div className="individual_div_container">

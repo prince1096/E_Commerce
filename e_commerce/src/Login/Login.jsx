@@ -51,7 +51,7 @@ const Login = () => {
 
       if (data?.encodedToken) {
         setIsLoggedIn(true);
-        localStorage.setItem("isLoggedIn", isLoggedIn);
+        // localStorage.setItem("isLoggedIn", isLoggedIn);
         localStorage.setItem("token", data?.encodedToken);
         setToken(data?.encodedToken);
         navigate(location?.state?.from.pathname || "/", { replace: true });

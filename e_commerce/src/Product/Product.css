@@ -32,6 +32,10 @@
   text-align: center;
 }
 
+.filter_infetch {
+  /* width: 250px; */
+}
+
 .previous_page_product,
 .next_page_product {
   background-color: whitesmoke;
@@ -55,4 +59,33 @@
   color: #0891b2;
   font-size: 18px;
   margin: 0 0.5rem;
+}
+
+.show_filter_button {
+  display: block;
+}
+
+.main_top_div {
+  z-index: 2;
+}
+
+.hide_filter_component {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  /* background-color: green; */
+  z-index: 1;
+
+  /* bottom: 0; */
+}
+
+@media screen and (min-width: 781px) {
+  .hide_filter_responsive {
+    display: block;
+  }
+
+  .show_filter_button {
+    display: none;
+  }
 }
