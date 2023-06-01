@@ -3,7 +3,59 @@
 }
 
 .checkout_address_mapping {
-  display: flex;
-  border: "2px solid";
+  /* display: flex; */
   padding: 0.4rem 0.8rem;
+  text-align: start;
+  color: black;
+  border: 2px solid #0891b2;
+  margin: 8px 0;
+}
+
+.address_btn_edit {
+  /* width: ; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.address_btn_edit button {
+  width: 50%;
+}
+
+.edit_button_1 {
+  background-color: #4bb543;
+  color: whitesmoke;
+  border: none;
+  padding: 0.3rem 0.4rem;
+  font-size: 18px;
+  font-weight: bolder;
+  margin-right: 2px;
+  margin-top: 5px;
+}
+
+.edit_button_2 {
+  background-color: red;
+  color: whitesmoke;
+  border: none;
+  padding: 0.3rem 0.4rem;
+  font-size: 18px;
+  font-weight: bolder;
+  margin-left: 2px;
+  margin-top: 5px;
+}
+
+.edit_button_1:hover,
+.edit_button_2:hover {
+  background-color: #0891b2;
+}
+
+.add_new_address_btn {
+  background-color: #0891b2;
+  width: 100%;
+  color: whitesmoke;
+  border: none;
+  padding: 0.3rem 0.4rem;
+  font-size: 18px;
+  font-weight: bolder;
+  margin-right: 2px;
+  margin-top: 5px;
 }

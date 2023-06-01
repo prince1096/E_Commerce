@@ -24,6 +24,9 @@ const Signup = () => {
       return;
     }
 
+    console.log(event.target.value);
+    console.log(userData);
+
     try {
       let response = await fetch("/api/auth/signup", {
         method: "POST",
@@ -36,7 +39,7 @@ const Signup = () => {
 
       if (data?.encodedToken) {
         localStorage.setItem("token", data?.encodedToken);
-
+        localStorage.setItem("userInformation", userData);
         navigate(location?.state?.from.pathname || "/login", { replace: true });
       }
 
@@ -95,7 +98,7 @@ const Signup = () => {
         </div>
 
         <button className="login_button" type="submit">
-          Login
+          SignUp
         </button>
       </form>
     </div>

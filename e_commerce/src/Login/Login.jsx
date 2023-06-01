@@ -20,42 +20,79 @@ const Login = () => {
 
   const [loginData, setLoginData] = useState({ email: "", password: "" });
 
+  const guestUser = {
+    email: "adarshbalika@gmail.com",
+    password: "adarshbalika",
+  };
+
   const getLoginData = async (event) => {
     if (!loginData) {
       return;
     }
-
-    toast.success("Login Successful", {
-      position: "bottom-right",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
-
     event.preventDefault();
     try {
       const response = await fetch("/api/auth/login", {
         method: "POST",
-        // headers: {
-        //   authorization: encodedToken,
-        // },
+
         body: JSON.stringify(loginData),
       });
 
       const data = await response.json();
       // setToken(data?.encodedToken);
-
       if (data?.encodedToken) {
         setIsLoggedIn(true);
-        // localStorage.setItem("isLoggedIn", isLoggedIn);
         localStorage.setItem("token", data?.encodedToken);
         setToken(data?.encodedToken);
         navigate(location?.state?.from.pathname || "/", { replace: true });
       }
+
+      toast.success("Login Successful", {
+        position: "bottom-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+    }
+  };
+
+  const guestLoginHandler = async () => {
+    setLoginData();
+
+    try {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+
+        body: JSON.stringify(guestUser),
+      });
+
+      const data = await response.json();
+
+      if (data?.encodedToken) {
+        setIsLoggedIn(true);
+        localStorage.setItem("token", data?.encodedToken);
+        setToken(data?.encodedToken);
+        navigate(location?.state?.from.pathname || "/", { replace: true });
+      }
+
+      toast.success("Login Successful", {
+        position: "bottom-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
 
       console.log(data);
     } catch (error) {
@@ -99,6 +136,16 @@ const Login = () => {
           Login
         </button>
       </form>
+
+      <div className="guest_login_container">
+        <button
+          className="login_button guest_login"
+          onClick={guestLoginHandler}
+          type="submit"
+        >
+          Login as Guest
+        </button>
+      </div>
 
       <ToastContainer
         position="bottom-right"

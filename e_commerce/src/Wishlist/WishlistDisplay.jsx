@@ -2,19 +2,25 @@
 import { useContext } from "react";
 import "./WishlistDisplay.css";
 import { AuthContext } from "../Auth/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ProductContext } from "../ProductProvider/ProductProvider";
 import { HiOutlineHeart } from "react-icons/hi";
 
 const WishlistDisplay = ({ product }) => {
   const { state, dispatch, addToCartHandler, removeFromWishListHandler } =
     useContext(ProductContext);
+  const navigate = useNavigate();
+
   const token = localStorage.getItem("token");
   // console.log(tokens);
 
   const tilteLength = (str) => {
     return str?.length > 15 ? str.slice(0, 14) + "..." : str;
   };
+
+  const cartBoxItem = state?.cartBox?.find(
+    (item) => item?._id === product?._id
+  );
 
   return (
     <div>
@@ -45,13 +51,30 @@ const WishlistDisplay = ({ product }) => {
           <HiOutlineHeart className="nav_logo" />
         </button>
 
-        <button
+        {/* <button
           disabled={state?.cartBtnDisable}
           className="cart_button"
           onClick={() => addToCartHandler(product)}
         >
           Add to Cart
-        </button>
+        </button> */}
+
+        {cartBoxItem ? (
+          <button
+            className="cart_button cart_button_added individual_addtocart "
+            onClick={() => navigate("/cart")}
+          >
+            Go To Cart
+          </button>
+        ) : (
+          <button
+            disabled={state?.cartBtnDisable}
+            className=" cart_button individual_addtocart "
+            onClick={() => addToCartHandler(product)}
+          >
+            Add to Cart
+          </button>
+        )}
       </div>
     </div>
   );

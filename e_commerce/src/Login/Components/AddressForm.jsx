@@ -17,7 +17,9 @@ const AddressForm = ({ dataAddress, setDataAddress, setShowModal }) => {
   console.log(dataAddress);
 
   const addButtonHandler = () => {
-    if (!storeInputData) return;
+    if (!storeInputData) {
+      return;
+    }
 
     setDataAddress([...dataAddress, storeInputData]);
     setShowModal(() => false);

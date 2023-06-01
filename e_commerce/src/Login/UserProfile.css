@@ -21,19 +21,21 @@
 }
 
 .user_profile_button_container {
-  background-color: whitesmoke;
+  /* background-color: whitesmoke; */
 }
 
 .user_profile_btn,
 .user_address_btn,
 .user_order_btn {
   background-color: whitesmoke;
+  width: 33%;
   color: #0891b2;
   border: none;
   padding: 0.3rem 0.5rem;
   margin: 0.1rem 0.6rem;
   font-size: 18px;
   text-decoration: none;
+  font-weight: bolder;
 }
 
 .nav-link-active {

@@ -6,6 +6,7 @@ Generic Styles * {
 
 .login_container {
   border: 2px solid;
+  box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.1);
 }
 
 /* .login_form_container {
@@ -24,6 +25,16 @@ Generic Styles * {
     "message"
     "button";
   gap: 1.6rem;
+}
+
+.guest_login {
+  width: 100%;
+  padding: 0 16px;
+  /* margin: 0 15px; */
+}
+
+.guest_login_container {
+  padding: 0 2rem;
 }
 
 #name-block {

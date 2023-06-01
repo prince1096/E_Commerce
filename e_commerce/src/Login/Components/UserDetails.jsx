@@ -7,6 +7,8 @@ const UserDetails = () => {
 
   const navigate = useNavigate();
 
+  const userInformation = localStorage.getItem("userInformation");
+
   const userHandler = () => {
     localStorage.clear();
     setToken("");
@@ -20,10 +22,12 @@ const UserDetails = () => {
       {/* {state?.userScreeen} */}
       <div className="user_profile_details">
         <p>
-          <strong>Name : </strong>
+          <strong>Name : {userInformation?.fullname || "Prince Raj"} </strong>
         </p>
         <p>
-          <strong>Email : </strong>
+          <strong>
+            Email : {userInformation?.email || "princeraj10121996@gmail.com"}{" "}
+          </strong>
         </p>
       </div>
       <button className="logout_button" onClick={userHandler}>
