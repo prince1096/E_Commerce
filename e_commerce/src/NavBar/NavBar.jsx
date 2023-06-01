@@ -68,7 +68,10 @@ const Navbar2 = () => {
           </div>
           <div>
             {token ? (
-              <NavLink to="/userprofile" className="nav_link_detail">
+              <NavLink
+                to="/userprofile/userdetails"
+                className="nav_link_detail"
+              >
                 {" "}
                 <BsPersonCircle className="nav_logo" />
               </NavLink>

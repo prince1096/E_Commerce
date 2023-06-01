@@ -1,18 +1,44 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+
 import "./IndividualProduct.css";
 import { HiOutlineHeart } from "react-icons/hi";
-import { AiFillHeart } from "react-icons/ai";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { useParams } from "react-router";
 import { ProductContext } from "../ProductProvider/ProductProvider";
 
 const IndividualProduct = () => {
-  const { state } = useContext(ProductContext);
+  const descLength = (str) => {
+    return str?.length > 50 ? str.slice(0, 49) + "..." : str;
+  };
+
+  const nameLength = (str) => {
+    return str?.length > 20 ? str.slice(0, 19) + "..." : str;
+  };
+
+  const {
+    state,
+    addToCartHandler,
+    addToWishListHandler,
+    removeFromWishListHandler,
+  } = useContext(ProductContext);
+  const navigate = useNavigate();
 
   const { productId } = useParams();
 
   const product = state?.initialProductData?.find(
     ({ _id }) => _id === productId
+  );
+
+  const cartBoxItem = state?.cartBox?.find(
+    (item) => item?._id === product?._id
+  );
+
+  const wishlistBoxItem = state?.wishlistBox?.find(
+    (item) => item?._id === product?._id
   );
 
   return (
@@ -25,14 +51,32 @@ const IndividualProduct = () => {
           <div className="individual_trending">Trending</div>
         )}
         <div className="individual_rating">{product?.rating}</div>
-        <button className="individual_heart">
-          <HiOutlineHeart className="nav_logo individual_heart_logo" />
-        </button>
+        {/* <button className="individual_heart"> */}
+        {/* <HiOutlineHeart className="nav_logo individual_heart_logo" /> */}
+        {/* </button> */}
+
+        {wishlistBoxItem ? (
+          <button
+            disabled={state?.wishListBtnDisable}
+            onClick={() => removeFromWishListHandler(product)}
+            className="image_looks image_looks_wishlist individual_heart"
+          >
+            <HiOutlineHeart className="nav_logo_product wishlist_heart" />
+          </button>
+        ) : (
+          <button
+            disabled={state?.wishListBtnDisable}
+            onClick={() => addToWishListHandler(product)}
+            className="image_looks image_looks_wishlist individual_heart"
+          >
+            <HiOutlineHeart className="nav_logo_product" />
+          </button>
+        )}
       </div>
 
       {/* 2ndpart */}
       <div className="individual_detailing">
-        <h1 className="individual_titlename">{product?.title}</h1>
+        <h1 className="individual_titlename">{nameLength(product?.title)}</h1>
 
         <div className="individual_price_data">
           <div className="individual_pricing">
@@ -54,11 +98,39 @@ const IndividualProduct = () => {
           </p>
 
           <p>
-            <strong>Description : </strong> {product?.description}
+            <strong>Description : </strong> {descLength(product?.description)}
           </p>
         </div>
 
-        <button className="individual_addtocart">Add To Cart</button>
+        {cartBoxItem ? (
+          <button
+            className="cart_button cart_button_added individual_addtocart"
+            onClick={() => navigate("/cart")}
+          >
+            Go To Cart
+          </button>
+        ) : (
+          <button
+            disabled={state?.cartBtnDisable}
+            className=" individual_addtocart "
+            onClick={() => addToCartHandler(product)}
+          >
+            Add to Cart
+          </button>
+        )}
+
+        <ToastContainer
+          position="bottom-right"
+          autoClose={1000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import "./Cart.css";
 import { ProductContext } from "../ProductProvider/ProductProvider";
 
 const CartDisplay = ({ product }) => {
-  const { removeFromCartHandler } = useContext(ProductContext);
+  const { state, removeFromCartHandler } = useContext(ProductContext);
 
   // const token = localStorage.getItem("token");
 
@@ -41,6 +41,7 @@ const CartDisplay = ({ product }) => {
           </div>
 
           <button
+            disabled={state?.cartBtnDisable}
             className="cart_remove_button"
             onClick={() => removeFromCartHandler(product)}
           >

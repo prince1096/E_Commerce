@@ -12,6 +12,11 @@ import Login from "./Login/Login";
 import Signup from "./Login/SignUp";
 import UserProfile from "./Login/UserProfile";
 import IndividualProduct from "./IndividualProduct/IndividualProduct";
+import UserDetails from "./Login/Components/UserDetails";
+import Address from "./Login/Components/Address";
+import Order from "./Login/Components/Order";
+import Checkout from "./Cart/Checkout";
+
 // import Navbar2 from "./NavBar/NavBar2";
 
 function App() {
@@ -45,9 +50,17 @@ function App() {
             </RequireAuth>
           }
         />
+
+        <Route path="/checkout" element={<Checkout />} />
+
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/userprofile" element={<UserProfile />} />
+        <Route path="/userprofile" element={<UserProfile />}>
+          <Route path="userdetails" element={<UserDetails />} />
+          <Route path="address" element={<Address />} />
+          <Route path="order" element={<Order />} />
+        </Route>
+
         <Route
           path="/individualproduct/:productId"
           element={<IndividualProduct />}

@@ -19,6 +19,8 @@ const initialState = {
   sortByPrice: "",
   roundPrice: 0,
   userScreen: "",
+  cartBtnDisable: false,
+  wishListBtnDisable: false,
 };
 
 const ProductProvider = ({ children }) => {
@@ -84,11 +86,14 @@ const ProductProvider = ({ children }) => {
         // console.log(action.payload);
         return { ...state, cartBox: action.payload };
 
-      case "CART_REMOVED":
-        return { ...state, cartBox: action.payload };
+      case "CART_BTN":
+        return { ...state, cartBtnDisable: action.payload };
 
       case "WISHLIST_ADDED":
         return { ...state, wishlistBox: action.payload };
+
+      case "WISHLIST_BTN":
+        return { ...state, wishListBtnDisable: action.payload };
 
       case "USER_DISPLAY":
         return { ...state, userScreen: action.payload };
@@ -274,8 +279,46 @@ const ProductProvider = ({ children }) => {
     getWishlistProduct();
   }, [state?.wishlistBox]);
 
+  const addToCartHandler = async (product) => {
+    // setCartBtnDisable(true);
+    dispatch({ type: "CART_BTN", payload: true });
+
+    try {
+      const response = await fetch("/api/user/cart", {
+        method: "POST",
+        headers: {
+          authorization: token,
+        },
+        body: JSON.stringify({ product }),
+      });
+
+      toast.success("Item added to cart", {
+        position: "bottom-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+
+      const data = await response.json();
+      console.log(data, "cart");
+
+      // dispatch({ type: "CART_ADDED", payload: data?.cart });
+    } catch (error) {
+      // console.log(2);
+      console.log(error);
+    } finally {
+      dispatch({ type: "CART_BTN", payload: false });
+    }
+  };
+
   const addToWishListHandler = async (product) => {
     // console.log(token, "wishlist");
+    dispatch({ type: "WISHLIST_BTN", payload: true });
+
     try {
       // console.log(1);
       const response = await fetch("/api/user/wishlist", {
@@ -303,6 +346,8 @@ const ProductProvider = ({ children }) => {
     } catch (error) {
       // console.log(2);
       console.log(error);
+    } finally {
+      dispatch({ type: "WISHLIST_BTN", payload: false });
     }
   };
 
@@ -324,7 +369,8 @@ const ProductProvider = ({ children }) => {
   // };
 
   const removeFromCartHandler = async (product) => {
-    console.log(product);
+    dispatch({ type: "CART_BTN", payload: true });
+
     try {
       const response = await fetch(`/api/user/cart/${product?._id}`, {
         method: "DELETE",
@@ -349,10 +395,14 @@ const ProductProvider = ({ children }) => {
       });
     } catch (error) {
       console.log(error);
+    } finally {
+      dispatch({ type: "CART_BTN", payload: false });
     }
   };
 
   const removeFromWishListHandler = async (product) => {
+    dispatch({ type: "WISHLIST_BTN", payload: true });
+
     try {
       const response = await fetch(`/api/user/wishlist/${product?._id}`, {
         method: "DELETE",
@@ -377,6 +427,8 @@ const ProductProvider = ({ children }) => {
       });
     } catch (error) {
       console.log(error);
+    } finally {
+      dispatch({ type: "WISHLIST_BTN", payload: false });
     }
   };
 
@@ -394,7 +446,7 @@ const ProductProvider = ({ children }) => {
           discountHandler,
           categoriesFilter,
           removeFromCartHandler,
-          // addToCartHandler,
+          addToCartHandler,
           addToWishListHandler,
           removeFromWishListHandler,
           discountFilter,

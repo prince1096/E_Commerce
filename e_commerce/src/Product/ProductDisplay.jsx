@@ -15,7 +15,7 @@ const ProductDisplay = ({ product }) => {
 
   const {
     state,
-    // addToCartHandler,
+    addToCartHandler,
     addToWishListHandler,
     removeFromWishListHandler,
   } = useContext(ProductContext);
@@ -41,39 +41,6 @@ const ProductDisplay = ({ product }) => {
   // console.log(cartBoxItem);
   // console.log(state?.cartBox.includes(product));
 
-  const addToCartHandler = async (product) => {
-    setCartBtnDisable(true);
-
-    try {
-      const response = await fetch("/api/user/cart", {
-        method: "POST",
-        headers: {
-          authorization: token,
-        },
-        body: JSON.stringify({ product }),
-      });
-
-      toast.success("Item added to cart", {
-        position: "bottom-right",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-
-      const data = await response.json();
-      console.log(data, "cart");
-
-      // dispatch({ type: "CART_ADDED", payload: data?.cart });
-    } catch (error) {
-      // console.log(2);
-      console.log(error);
-    }
-  };
-
   return (
     <div>
       <div className="productdisplay_container">
@@ -97,6 +64,7 @@ const ProductDisplay = ({ product }) => {
 
         {wishlistBoxItem ? (
           <button
+            disabled={state?.wishListBtnDisable}
             onClick={() => removeFromWishListHandler(product)}
             className="image_looks image_looks_wishlist"
           >
@@ -104,6 +72,7 @@ const ProductDisplay = ({ product }) => {
           </button>
         ) : (
           <button
+            disabled={state?.wishListBtnDisable}
             onClick={() => addToWishListHandler(product)}
             className="image_looks image_looks_wishlist"
           >
@@ -120,7 +89,7 @@ const ProductDisplay = ({ product }) => {
           </button>
         ) : (
           <button
-            disabled={cartBtnDisable}
+            disabled={state?.cartBtnDisable}
             className="cart_button"
             onClick={() => addToCartHandler(product)}
           >

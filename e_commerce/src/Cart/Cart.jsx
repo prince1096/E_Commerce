@@ -6,9 +6,11 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import "./Cart.css";
+import { useNavigate } from "react-router";
 
 const Cart = () => {
   const { state } = useContext(ProductContext);
+  const navigate = useNavigate();
 
   // console.log(state?.cartBox);
 
@@ -84,7 +86,12 @@ const Cart = () => {
               <p>TotalPrice : </p> <p>${totalPrice}</p>
             </div>
 
-            <button className="totalitem_checkoutbtn_details">CHECKOUT</button>
+            <button
+              onClick={() => navigate("/checkout")}
+              className="totalitem_checkoutbtn_details"
+            >
+              CHECKOUT
+            </button>
           </div>
         </div>
       )}

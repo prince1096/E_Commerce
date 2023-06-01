@@ -38,6 +38,7 @@ const WishlistDisplay = ({ product }) => {
         </Link>
 
         <button
+          disabled={state?.wishListBtnDisable}
           onClick={() => removeFromWishListHandler(product)}
           className="image_looks image_looks_wishlist"
         >
@@ -45,6 +46,7 @@ const WishlistDisplay = ({ product }) => {
         </button>
 
         <button
+          disabled={state?.cartBtnDisable}
           className="cart_button"
           onClick={() => addToCartHandler(product)}
         >

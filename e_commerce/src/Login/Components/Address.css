@@ -1,0 +1,9 @@
+.checkout_address_container {
+  margin: 10px;
+}
+
+.checkout_address_mapping {
+  display: flex;
+  border: "2px solid";
+  padding: 0.4rem 0.8rem;
+}

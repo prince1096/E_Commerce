@@ -14,7 +14,7 @@ const SearchedProduct = ({ products }) => {
 
   return (
     <Link
-      to={`/individualproduct/${products.id}`}
+      to={`/individualproduct/${products._id}`}
       className="product_link_individual"
     >
       <div className="searched_product_container">

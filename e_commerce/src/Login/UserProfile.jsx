@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../Auth/AuthProvider";
 import { useNavigate } from "react-router";
+import { NavLink, Outlet } from "react-router-dom";
 
 import "./UserProfile.css";
 import { ProductContext } from "../ProductProvider/ProductProvider";
@@ -24,10 +25,16 @@ const UserProfile = () => {
 
   // console.log(state?.userScreeen);
 
+  const toggleActive = ({ isActive }) => {
+    return isActive
+      ? "user_profile_btn nav-link-active"
+      : "user_profile_btn nav-link";
+  };
+
   return (
     <div className="userprofile_container">
-      <div className="user_profile_button_container">
-        <button className="user_profile_btn">
+      <div>
+        {/* <button className="user_profile_btn">
           {" "}
           <strong> User Profile </strong>{" "}
         </button>
@@ -36,21 +43,22 @@ const UserProfile = () => {
         </button>
         <button className="user_order_btn" onClick={showOrders}>
           <strong> Order History </strong>{" "}
-        </button>
+        </button> */}
+
+        <div className=" user_profile_button_container ">
+          <NavLink to={"/userprofile/userdetails"} className={toggleActive}>
+            User Profile
+          </NavLink>
+          <NavLink to={"/userprofile/address"} className={toggleActive}>
+            Address
+          </NavLink>
+          <NavLink to={"/userprofile/order"} className={toggleActive}>
+            Order History
+          </NavLink>
+        </div>
+
+        <Outlet />
       </div>
-      {/* <h1>Profile Information</h1> */}
-      {state?.userScreeen}
-      <div className="user_profile_details">
-        <p>
-          <strong>Name : </strong>
-        </p>
-        <p>
-          <strong>Email : </strong>
-        </p>
-      </div>
-      <button className="logout_button" onClick={userHandler}>
-        <strong>Logout</strong>
-      </button>
     </div>
   );
 };

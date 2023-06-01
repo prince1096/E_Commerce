@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .individual_div_container {
   /* border: 2px solid; */
   display: flex;
@@ -71,7 +76,8 @@
 .individual_price_data {
   display: flex;
   justify-content: space-between;
-  margin: 5px;
+  margin: 0 5px;
+  position: relative;
 }
 
 .individual_pricing {
@@ -91,7 +97,7 @@
 .individual_productdetials {
   text-align: start;
   padding: 0 5px;
-  /* margin: 10px; */
+  margin-bottom: 42px;
 }
 
 .individual_addtocart {
@@ -101,8 +107,11 @@
   color: white;
   border: none;
   padding: 10px 16px;
+  width: 100%;
   /* border-radius: 5px; */
   font-size: 1.2rem;
+  position: absolute;
+  bottom: 0;
 }
 
 @media screen and (min-width: 768px) {
