@@ -24,14 +24,20 @@
   font-size: 1.4rem;
   color: #0891b2;
 }
-h3 {
+/* h3 {
   margin: 10px 0 0;
+} */
+
+.image_display_container {
+  object-fit: cover;
+  width: "100%";
+  height: "200px";
 }
-p {
+/* p {
   margin: 10px 0 0;
   line-height: 1.4;
   color: #666;
-}
+} */
 .cart_button {
   margin-top: 10px;
   background-color: #0891b2;
@@ -40,6 +46,18 @@ p {
   padding: 10px 16px;
   border-radius: 5px;
   font-size: 0.9rem;
+}
+
+.cart_button_added {
+  background-color: #4bb543;
+  margin-top: 10px;
+  /* background-color: #0891b2; */
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  width: 100%;
 }
 
 .image_looks {

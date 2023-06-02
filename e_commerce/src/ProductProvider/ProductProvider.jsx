@@ -21,6 +21,16 @@ const initialState = {
   userScreen: "",
   cartBtnDisable: false,
   wishListBtnDisable: false,
+  address: [
+    {
+      name: "xyz singh",
+      address: "5/A  professor colony katjunagar Jadavpur",
+      pincode: 700032,
+      city: "Kolkata",
+      state: "West Bengal",
+      mobilenumber: 1234567890,
+    },
+  ],
 };
 
 const ProductProvider = ({ children }) => {
@@ -97,6 +107,10 @@ const ProductProvider = ({ children }) => {
 
       case "USER_DISPLAY":
         return { ...state, userScreen: action.payload };
+
+
+        case "ADD_ADDRESS" : 
+        return {...state, address : action.payload};
 
       default:
         return { ...state };

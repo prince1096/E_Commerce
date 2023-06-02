@@ -52,7 +52,7 @@ const Cart = () => {
   );
 
   return (
-    <div>
+    <div className="cart_page_container">
       {state?.cartBox?.length === 0 ? (
         <div>
           <h2>Empty Cart Start shopping </h2>
@@ -61,6 +61,7 @@ const Cart = () => {
         <div className="cart_display_page">
           <div>
             {state?.cartBox?.map((product) => (
+              // 2
               <CartDisplay key={product?.id} product={product} />
             ))}
           </div>

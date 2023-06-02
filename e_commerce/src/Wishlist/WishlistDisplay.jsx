@@ -26,7 +26,7 @@ const WishlistDisplay = ({ product }) => {
     <div>
       <div className="productdisplay_container">
         <Link
-          to={`/individualproduct/${product.id}`}
+          to={`/individualproduct/${product._id}`}
           className="product_link_individual"
         >
           <img
@@ -48,7 +48,7 @@ const WishlistDisplay = ({ product }) => {
           onClick={() => removeFromWishListHandler(product)}
           className="image_looks image_looks_wishlist"
         >
-          <HiOutlineHeart className="nav_logo" />
+          <HiOutlineHeart className="nav_logo_wishlist" />
         </button>
 
         {/* <button
@@ -61,7 +61,7 @@ const WishlistDisplay = ({ product }) => {
 
         {cartBoxItem ? (
           <button
-            className="cart_button cart_button_added individual_addtocart "
+            className="individual_gotocart_wish"
             onClick={() => navigate("/cart")}
           >
             Go To Cart
@@ -69,7 +69,7 @@ const WishlistDisplay = ({ product }) => {
         ) : (
           <button
             disabled={state?.cartBtnDisable}
-            className=" cart_button individual_addtocart "
+            className="individual_addtocart_wish "
             onClick={() => addToCartHandler(product)}
           >
             Add to Cart

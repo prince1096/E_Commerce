@@ -2,14 +2,24 @@ import React, { useContext } from "react";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { HiOutlineHeart } from "react-icons/hi";
 
 import "./Cart.css";
 import { ProductContext } from "../ProductProvider/ProductProvider";
 
 const CartDisplay = ({ product }) => {
-  const { state, removeFromCartHandler } = useContext(ProductContext);
+  const {
+    state,
+    removeFromCartHandler,
+    addToWishListHandler,
+    removeFromWishListHandler,
+  } = useContext(ProductContext);
 
   // const token = localStorage.getItem("token");
+
+  const wishlistBoxItem = state?.wishlistBox?.find(
+    (item) => item?._id === product?._id
+  );
 
   return (
     <div>
@@ -20,7 +30,25 @@ const CartDisplay = ({ product }) => {
           </div>
 
           <div className="cart_wishlist_container">
-            <button>Heart</button>
+            {/* <button>Heart</button> */}
+
+            {wishlistBoxItem ? (
+              <button
+                disabled={state?.wishListBtnDisable}
+                onClick={() => removeFromWishListHandler(product)}
+                className="image_looks image_looks_wishlist"
+              >
+                <HiOutlineHeart className="nav_logo_product wishlist_heart" />
+              </button>
+            ) : (
+              <button
+                disabled={state?.wishListBtnDisable}
+                onClick={() => addToWishListHandler(product)}
+                className="image_looks image_looks_wishlist"
+              >
+                <HiOutlineHeart className="nav_logo_product" />
+              </button>
+            )}
           </div>
         </div>
 

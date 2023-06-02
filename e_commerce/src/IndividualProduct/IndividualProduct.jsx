@@ -45,7 +45,11 @@ const IndividualProduct = () => {
     <div className="individual_div_container">
       <div className="individual_image_container">
         <div>
-          <img src={product?.thumbnail} width="270px" height="300px" alt="" />
+          <img
+            src={product?.thumbnail}
+            alt=""
+            className="individual_image_div"
+          />
         </div>
         {product?.trending && (
           <div className="individual_trending">Trending</div>

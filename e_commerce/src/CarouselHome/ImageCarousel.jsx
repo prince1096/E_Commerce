@@ -14,8 +14,9 @@ const ImageCarousel = ({ imgDetails }) => {
           <button onClick={() => categoriesFilter(imgDetails?.value)}>
             <img
               src={imgDetails?.image}
+              className="images_carousel"
               // className="images_"
-              style={{ width: "100%", height: "" }}
+              // style={{ width: "100%", height: "" }}
               alt=""
             />
           </button>

@@ -1,25 +1,29 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import "./AddressForm.css";
 import randomAddress from "./randomAddress";
+import { ProductContext } from "../../ProductProvider/ProductProvider";
 
-const AddressForm = ({ dataAddress, setDataAddress, setShowModal }) => {
-  const [storeInputData, setStoreInputData] = useState({
-    name: "",
-    address: "",
-    pincode: "",
-    city: "",
-    state: "",
-    mobilenumber: "",
-    alternatenumber: "",
-  });
+const AddressForm = ({
+  dataAddress,
+  setDataAddress,
+  setShowModal,
+  storeInputData,
+  setStoreInputData,
+}) => {
+  const { state, dispatch } = useContext(ProductContext);
 
-  console.log(dataAddress);
+  // console.log(dataAddress);
 
   const addButtonHandler = () => {
     if (!storeInputData) {
       return;
     }
+
+    dispatch({
+      type: "ADD_ADDRESS",
+      payload: [...state?.address, storeInputData],
+    });
 
     setDataAddress([...dataAddress, storeInputData]);
     setShowModal(() => false);
@@ -42,9 +46,20 @@ const AddressForm = ({ dataAddress, setDataAddress, setShowModal }) => {
 
   const randomButtonHandler = () => {
     const randomNumber = Math.ceil(Math.random() * randomAddress.length);
+    const randomData = randomAddress[randomNumber];
 
-    setDataAddress([...dataAddress, randomAddress[randomNumber]]);
-    setShowModal(() => false);
+    setStoreInputData({
+      name: randomData?.name,
+      address: randomData?.address,
+      pincode: randomData?.pincode,
+      city: randomData?.city,
+      state: randomData?.state,
+      mobilenumber: randomData?.mobilenumber,
+      alternatenumber: randomData?.alternatenumber,
+    });
+
+    // setDataAddress([...dataAddress, randomAddress[randomNumber]]);
+    // setShowModal(() => false);
   };
 
   return (

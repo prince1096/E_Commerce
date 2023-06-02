@@ -48,11 +48,14 @@ const ProductDisplay = ({ product }) => {
           to={`/individualproduct/${product._id}`}
           className="product_link_individual"
         >
-          <img
-            src={product?.thumbnail}
-            alt=""
-            style={{ width: "100%", height: "200px" }}
-          />
+          <div>
+            <img
+              src={product?.thumbnail}
+              alt=""
+              className="image_display_container"
+              style={{ width: "100%", height: "200px" }}
+            />
+          </div>
 
           <h3> {tilteLength(product?.title)}</h3>
           <span className="product_span">${product?.price}</span>
@@ -82,7 +85,7 @@ const ProductDisplay = ({ product }) => {
 
         {cartBoxItem ? (
           <button
-            className="cart_button cart_button_added"
+            className="cart_button, cart_button_added"
             onClick={() => navigate("/cart")}
           >
             Go To Cart

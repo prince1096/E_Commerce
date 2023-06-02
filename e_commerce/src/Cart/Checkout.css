@@ -7,6 +7,8 @@
 .checkout_main_container {
   display: flex;
   justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
 }
 
 .checkout_price_container {
@@ -37,4 +39,14 @@
   /* border-radius: 5px; */
   font-size: 1rem;
   font-weight: bold;
+}
+
+@media screen and (min-width: 768px) {
+  .checkout_main_container {
+    flex-direction: row;
+  }
+
+  .checkout_price_container {
+    align-self: flex-start;
+  }
 }

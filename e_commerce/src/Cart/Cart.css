@@ -6,15 +6,30 @@
 
 .main_cart_checkout {
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: column;
+}
+
+.cart_page_container {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cart_display_page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin: 15px;
+  text-align: center;
+  /* margin: 0 auto; */
 }
 
 .cart_grid_container {
   display: flex;
-  /* border: 2px solid; */
+  border-radius: 8px;
   justify-content: center;
   width: 300px;
-  box-shadow: 5px 5px 10px 1px grey;
+  box-shadow: 1px 1px 16px 1px rgba(0, 0, 0, 0.1);
 }
 
 .cart_image_container {
@@ -23,7 +38,10 @@
 
 .cart_image_div {
   width: 140px;
-  height: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 
 .cart_wishlist_container {
@@ -40,6 +58,7 @@
   text-align: start;
   position: relative;
   width: 100%;
+  margin-right: 5px;
 }
 
 .cart_name_container {
@@ -74,7 +93,20 @@
   position: absolute;
   bottom: 0;
   width: 100%;
-  padding: 0.3rem 1rem;
+  color: #0891b2;
+  border: 2px solid #0891b2;
+  padding: 0.3rem 0.5rem;
+  margin: 0.5rem 0;
+  margin-right: 0.3rem;
+  font-weight: bolder;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.cart_remove_button:hover {
+  background-color: red;
+  color: whitesmoke;
+  border: 2px solid red;
 }
 
 .minus_quantity_button,
@@ -88,10 +120,13 @@
 }
 
 .totalitem_price_details {
-  border: 2px solid;
+  /* border: 2px solid; */
   text-align: center;
-  width: 250px;
-  height: 300px;
+  min-width: 250px;
+  max-width: none;
+  /* min-height: 300px; */
+  /* height: auto; */
+  box-shadow: 1px 1px 16px 1px rgba(0, 0, 0, 0.1);
 }
 
 .totalitem_cartitem_details,
@@ -117,12 +152,16 @@
     /* display: flex; */
     /* border: 2px solid; */
     width: 400px;
-    box-shadow: 5px 5px 10px 1px grey;
+    box-shadow: 1px 1px 16px 1px rgba(0, 0, 0, 0.1);
   }
 
   /* .main_cart_checkout {
     flex-direction: row;
   } */
+
+  .totalitem_price_details {
+    align-self: flex-start;
+  }
 
   .cart_grid_container {
     gap: 15px;
