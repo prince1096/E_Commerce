@@ -30,7 +30,16 @@ const Address = () => {
 
   const [showModal, setShowModal] = useState(false);
 
-  const editHandler = (details, index) => {
+  const editHandler = (details, notedIndex) => {
+    // const updatedList = state?.address?.filter(
+    //   (add, index) => index !== notedIndex
+    // );
+
+    // dispatch({
+    //   type: "ADD_ADDRESS",
+    //   payload: updatedList,
+    // });
+
     setStoreInputData({
       name: details?.name,
       address: details?.address,
@@ -47,7 +56,7 @@ const Address = () => {
   // console.log(state?.address);
 
   const deleteHandler = (details, notedIndex) => {
-    console.log(notedIndex);
+    // console.log(notedIndex);
     // console.log(state?.Address);
 
     const updatedList = state?.address?.filter(
@@ -114,8 +123,8 @@ const Address = () => {
                   Delete
                 </button>
               </div>
-              {/* </div> */}
             </div>
+            // </div>
           ))}
         </div>
       </div>

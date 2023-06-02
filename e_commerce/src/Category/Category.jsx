@@ -21,6 +21,8 @@ const Category = () => {
 
   // we can map here.
 
+  
+
   return (
     <div className="categorywise_container">
       <div className="categorylist_container">

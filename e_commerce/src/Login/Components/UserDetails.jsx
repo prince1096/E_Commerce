@@ -26,7 +26,7 @@ const UserDetails = () => {
         </p>
         <p>
           <strong>
-            Email : {userInformation?.email || "princeraj10121996@gmail.com"}{" "}
+            Email : {userInformation?.email || "princeraj@gmail.com"}{" "}
           </strong>
         </p>
       </div>

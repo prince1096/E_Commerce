@@ -34,7 +34,33 @@ const Checkout = () => {
 
   return (
     <div className="checkout_main_container">
-      <Address />
+      {/* <Address /> */}
+
+      <div className="checkout_address_container">
+        <div>
+          <h2>Address Details</h2>
+          {/* <div>
+          </div> */}
+          {state?.address?.map((details, index) => (
+            <div
+              className="checkout_address_mapping"
+              //   style={{ border: "2px solid" }}
+            >
+              {" "}
+              <input type="radio" />
+              <div>
+                <h4>{details?.name}</h4>
+                <p> Mobile Number : {details?.mobilenumber}</p>
+                <p>{details?.address}</p>
+                <p>Pin : {details?.pincode}</p>
+                <p>
+                  {details?.city}, {details?.state}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* 2nd part */}
       <div className="checkout_price_container">

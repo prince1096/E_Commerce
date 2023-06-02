@@ -76,7 +76,7 @@ const Cart = () => {
               <div className="totalitem_cartitem_details">
                 {" "}
                 <p>
-                  {item.title} ({item?.quantity}){" "}
+                  {item.title} ({item?.quantity}) :
                 </p>{" "}
                 <p>{item?.price}</p>{" "}
               </div>

@@ -16,6 +16,16 @@ const AddressForm = ({
   // console.log(dataAddress);
 
   const addButtonHandler = () => {
+    setStoreInputData({
+      name: "",
+      address: "",
+      pincode: "",
+      city: "",
+      state: "",
+      mobilenumber: "",
+      alternatenumber: "",
+    });
+
     if (!storeInputData) {
       return;
     }
