@@ -35,7 +35,7 @@ const AddressForm = ({
       payload: [...state?.address, storeInputData],
     });
 
-    setDataAddress([...dataAddress, storeInputData]);
+    // setDataAddress([...dataAddress, storeInputData]);
     setShowModal(() => false);
   };
 

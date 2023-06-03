@@ -117,19 +117,43 @@ const Products = () => {
             <Filter filterHandler={filterHandler} />
           </div>
 
-          <div className={`main_container_product  `}>
-            {sortingPriceProduct?.length === 0 && (
-              <div className="noproduct_found">
-                <img src={NoProductFound} alt="" />
-                <h1>No Product found</h1>
-              </div>
-            )}
+          <div>
+            <div className="sticky_product_data">
+              <div>showing All Products</div>
 
-            {sortingPriceProduct
-              ?.slice((page - 1) * 8, page * 8)
-              .map((product) => (
-                <ProductDisplay key={product?.id} product={product} />
-              ))}
+              <div>
+                <button
+                  className="show_filter_button"
+                  onClick={() => setShowFilter(true)}
+                >
+                  ShowFilters
+                </button>
+
+                {showFilters && (
+                  <div className="hide_filter_component">
+                    <button onClick={() => setShowFilter(false)}>
+                      HideFilters
+                    </button>
+                    <Filter />
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className={`main_container_product  `}>
+              {sortingPriceProduct?.length === 0 && (
+                <div className="noproduct_found">
+                  <img src={NoProductFound} alt="" />
+                  <h1>No Product found</h1>
+                </div>
+              )}
+
+              {sortingPriceProduct
+                ?.slice((page - 1) * 8, page * 8)
+                .map((product) => (
+                  <ProductDisplay key={product?.id} product={product} />
+                ))}
+            </div>
           </div>
         </div>
       </div>
@@ -177,7 +201,7 @@ const Products = () => {
           )}
         </div>
       )}
-      <button
+      {/* <button
         className="show_filter_button"
         onClick={() => setShowFilter(true)}
       >
@@ -188,7 +212,7 @@ const Products = () => {
           <button onClick={() => setShowFilter(false)}>HideFilters</button>
           <Filter />
         </div>
-      )}
+      )} */}
     </div>
     // </div>
   );

@@ -27,6 +27,8 @@ function App() {
         <NavBar />
       </div>
 
+      {}
+
       {/* <HomePage /> */}
       {/* <Navbar2 /> */}
 

@@ -6,23 +6,42 @@ import { GrInstagram } from "react-icons/gr";
 import { GrLinkedin } from "react-icons/gr";
 import { SlSocialTwitter } from "react-icons/sl";
 import { SiGithub } from "react-icons/si";
+import { useNavigate } from "react-router";
 
 const Footer = () => {
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  const token = localStorage.getItem("token");
+
+  const loginHandler = () => {
+    token ? navigate("/userprofile/userdetails") : navigate("/login");
+  };
+
+  const signUpHandler = () => {
+    token ? navigate("/userprofile/userdetails") : navigate("/signup");
+  };
 
   return (
     <div className="main_footer_container">
       <div className="footer_container">
         <div className="first_footer_container">
-          <h3 className="first_footer_content">VastraCart</h3>
+          <h3 className="first_footer_content">QuickCart</h3>
           <h5 className="first_footer_content">Developed By Prince Raj</h5>
           <h5 className="first_footer_content">No CopyRight</h5>
         </div>
 
         <div className="second_footer_container">
           <h4 className="second_footer_content">Resoureces</h4>
-          <h5 className="second_footer_content">SignUp</h5>
-          <h5 className="second_footer_content">SignIn</h5>
+          <h5 className="second_footer_content">
+            <button className="sign_footer_btn" onClick={() => signUpHandler()}>
+              Signup
+            </button>
+          </h5>
+          <h5 className="second_footer_content">
+            <button className="sign_footer_btn" onClick={() => loginHandler()}>
+              SignIn
+            </button>
+          </h5>
         </div>
       </div>
 

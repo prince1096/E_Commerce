@@ -5,13 +5,12 @@ import { AuthContext } from "../Auth/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import { ProductContext } from "../ProductProvider/ProductProvider";
 import { HiOutlineHeart } from "react-icons/hi";
-import { AiFillHeart } from "react-icons/ai";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ProductDisplay = ({ product }) => {
-  const [cartBtnDisable, setCartBtnDisable] = useState(false);
+  // const [cartBtnDisable, setCartBtnDisable] = useState(false);
 
   const {
     state,

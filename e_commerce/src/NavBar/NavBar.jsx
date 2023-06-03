@@ -29,7 +29,7 @@ const Navbar2 = () => {
           <NavLink to="/" className="nav_link">
             <div className="logo_icons">
               <Diversity2Icon fontSize="medium" />
-              <div>VastraCart</div>
+              <div>QuickCart</div>
             </div>
           </NavLink>
         </div>
