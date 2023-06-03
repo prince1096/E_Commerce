@@ -31,6 +31,7 @@ const initialState = {
       mobilenumber: 1234567890,
     },
   ],
+  categoryList: [],
 };
 
 const ProductProvider = ({ children }) => {
@@ -108,9 +109,14 @@ const ProductProvider = ({ children }) => {
       case "USER_DISPLAY":
         return { ...state, userScreen: action.payload };
 
+      case "ADD_ADDRESS":
+        return { ...state, address: action.payload };
 
-        case "ADD_ADDRESS" : 
-        return {...state, address : action.payload};
+      case "CATEGORY_FETCH_SUCCESS":
+        return { ...state, categoryList: action.payload };
+
+      case "UPDATE_QTY_IN_CART":
+        return { ...state, cartBox: action.payload };
 
       default:
         return { ...state };
@@ -294,6 +300,19 @@ const ProductProvider = ({ children }) => {
   }, [state?.wishlistBox]);
 
   const addToCartHandler = async (product) => {
+    if (!token) {
+      return toast.info("Login First!", {
+        position: "bottom-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+
     // setCartBtnDisable(true);
     dispatch({ type: "CART_BTN", payload: true });
 
@@ -330,6 +349,19 @@ const ProductProvider = ({ children }) => {
   };
 
   const addToWishListHandler = async (product) => {
+    if (!token) {
+      return toast.info("Login First!", {
+        position: "bottom-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+
     // console.log(token, "wishlist");
     dispatch({ type: "WISHLIST_BTN", payload: true });
 

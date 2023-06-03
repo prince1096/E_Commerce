@@ -9,7 +9,7 @@ import "./Cart.css";
 import { useNavigate } from "react-router";
 
 const Cart = () => {
-  const { state } = useContext(ProductContext);
+  const { state, dispatch } = useContext(ProductContext);
   const navigate = useNavigate();
 
   // console.log(state?.cartBox);
@@ -37,11 +37,30 @@ const Cart = () => {
   // useEffect(() => {
   //   getCartProduct();
   // }, []);
+  const token = localStorage.getItem("token");
+
+  const updatedQtyFromCart = async (product, type) => {
+    try {
+      const response = await fetch(`api/user/cart/${product?._id}`, {
+        method: "POST",
+        body: JSON.stringify({ action: { type } }),
+        headers: {
+          authorization: token,
+        },
+      });
+
+      const data = await response.json();
+
+      dispatch({ type: "UPDATE_QTY_IN_CART", payload: data.cart });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const totalItems = state?.cartBox?.reduce(
     (acc, item) => [
       ...acc,
-      { title: item?.title, price: item?.price, quantity: 1 },
+      { title: item?.title, price: item?.price, quantity: item?.qty },
     ],
     []
   );
@@ -61,8 +80,13 @@ const Cart = () => {
         <div className="cart_display_page">
           <div>
             {state?.cartBox?.map((product) => (
+              <CartDisplay
+                key={product?.id}
+                product={product}
+                updatedQtyFromCart={updatedQtyFromCart}
+              />
+
               // 2
-              <CartDisplay key={product?.id} product={product} />
             ))}
           </div>
 
@@ -78,7 +102,7 @@ const Cart = () => {
                 <p>
                   {item.title} ({item?.quantity}) :
                 </p>{" "}
-                <p>{item?.price}</p>{" "}
+                <p>{item?.price * item.quantity}</p>{" "}
               </div>
             ))}
 

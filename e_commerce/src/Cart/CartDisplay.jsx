@@ -3,13 +3,16 @@ import React, { useContext } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { HiOutlineHeart } from "react-icons/hi";
+import { AiFillMinusCircle } from "react-icons/ai";
+import { AiFillPlusCircle } from "react-icons/ai";
 
 import "./Cart.css";
 import { ProductContext } from "../ProductProvider/ProductProvider";
 
-const CartDisplay = ({ product }) => {
+const CartDisplay = ({ product, updatedQtyFromCart }) => {
   const {
     state,
+    dispatch,
     removeFromCartHandler,
     addToWishListHandler,
     removeFromWishListHandler,
@@ -64,8 +67,22 @@ const CartDisplay = ({ product }) => {
           </div>
 
           <div className="cart_quantity_container">
-            Quantity : <button className="minus_quantity_button">_</button>{" "}
-            <span> 1 </span> <button className="plus_quantity_button">+</button>
+            Quantity :{" "}
+            <button
+              className="minus_quantity_button"
+              onClick={() => updatedQtyFromCart(product, "decrement")}
+              disabled={product.qty < 2}
+            >
+              {" "}
+              <AiFillMinusCircle />{" "}
+            </button>{" "}
+            <span> {product?.qty} </span>{" "}
+            <button
+              className="plus_quantity_button"
+              onClick={() => updatedQtyFromCart(product, "increment")}
+            >
+              <AiFillPlusCircle />
+            </button>
           </div>
 
           <button

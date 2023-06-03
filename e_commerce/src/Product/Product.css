@@ -3,6 +3,7 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
+  text-align: center;
 }
 
 .fakefetch_container {
@@ -16,11 +17,16 @@
 }
 
 .product_category_component {
-  /* width: 100vh; */
+  width: 100%;
 }
 
 .show_filter_responsive {
   display: block;
+}
+
+.noproduct_found {
+  margin: auto auto;
+  width: 100vh;
 }
 
 .hide_filter_responsive {

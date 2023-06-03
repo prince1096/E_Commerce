@@ -1,17 +1,18 @@
 // Flipkart
-import grocery from "../assets/grocery.webp";
-import Home_appliances from "../assets/Home_appliances.jpg";
 import autopart from "../assets/autopart.jpg";
-import family_fashion from "../assets/family_fashion.jpg";
-import mobiles_logo from "../assets/mobiles_logo.jpg";
-import laptop from "../assets/laptop.jpg";
-import NewArrival from "../assets/NewArrival.jpg";
-
+import clothes from "../assets/clothes.jpg";
+import food from "../assets/food.jpg";
+import lappy from "../assets/lappy.jpg";
+import mobiles_phones from "../assets/mobiles_phones.jpg";
+import sale from "../assets/sale.jpg";
+import appliances from "../assets/appliances.jpg";
 import "./CarouselHome.css";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ImageCarousel from "./ImageCarousel";
+import { useContext, useEffect } from "react";
+import { ProductContext } from "../ProductProvider/ProductProvider";
 
 const responsive = {
   superLargeDesktop: {
@@ -34,29 +35,33 @@ const responsive = {
 };
 
 const CarouselHome = () => {
+  const { state, dispatch } = useContext(ProductContext);
+
+  
+
   const imageArr = [
     {
-      image: mobiles_logo,
+      image: mobiles_phones,
       value: "smartphones",
     },
 
     {
-      image: laptop,
+      image: lappy,
       value: "laptops",
     },
 
     {
-      image: family_fashion,
+      image: clothes,
       value: "fashion",
     },
 
     {
-      image: grocery,
+      image: food,
       value: "groceries",
     },
 
     {
-      image: Home_appliances,
+      image: appliances,
       value: "home-appliances",
     },
 
@@ -66,7 +71,7 @@ const CarouselHome = () => {
     },
 
     {
-      image: NewArrival,
+      image: sale,
       value: "",
     },
   ];

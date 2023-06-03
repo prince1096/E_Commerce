@@ -7,6 +7,9 @@ import ProductDisplay from "./ProductDisplay";
 
 import "./Product.css";
 import Category from "../Category/Category";
+import Navbar2 from "../NavBar/NavBar";
+import Loader from "../Components/Loader/Loader";
+import NoProductFound from "../assets/NoProductFound.jpg";
 
 const Products = () => {
   const { state } = useContext(ProductContext);
@@ -97,6 +100,9 @@ const Products = () => {
   return (
     // <div>
     <div className="main_top_div">
+      {state?.isLoading && <Loader />}
+
+      {/* <Navbar2 />{" "} */}
       <div className="fakefetch_container">
         <div className="product_category_component">
           <Category />
@@ -112,6 +118,13 @@ const Products = () => {
           </div>
 
           <div className={`main_container_product  `}>
+            {sortingPriceProduct?.length === 0 && (
+              <div className="noproduct_found">
+                <img src={NoProductFound} alt="" />
+                <h1>No Product found</h1>
+              </div>
+            )}
+
             {sortingPriceProduct
               ?.slice((page - 1) * 8, page * 8)
               .map((product) => (
@@ -120,7 +133,6 @@ const Products = () => {
           </div>
         </div>
       </div>
-
       {/* Pagination */}
       {sortingPriceProduct?.length > 0 && (
         <div className="pagination">
@@ -165,14 +177,12 @@ const Products = () => {
           )}
         </div>
       )}
-
       <button
         className="show_filter_button"
         onClick={() => setShowFilter(true)}
       >
         ShowFilters
       </button>
-
       {showFilters && (
         <div className="hide_filter_component">
           <button onClick={() => setShowFilter(false)}>HideFilters</button>

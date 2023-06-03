@@ -11,7 +11,10 @@ const ImageCarousel = ({ imgDetails }) => {
     <div>
       <div className="image_carousel_container">
         <Link className="images_carousel_navlink" to="/products">
-          <button onClick={() => categoriesFilter(imgDetails?.value)}>
+          <button
+            className="image_carousel_btn"
+            onClick={() => categoriesFilter(imgDetails?.value)}
+          >
             <img
               src={imgDetails?.image}
               className="images_carousel"

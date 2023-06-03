@@ -30,6 +30,8 @@
 }
 
 .categorywise_container {
+  /* width: 100vh; */
+  /* min-width: 100%; */
   display: flex;
   flex-wrap: wrap;
   /* gap: 20px; */
@@ -37,4 +39,12 @@
   align-items: center;
   /* border: 2px solid; */
   box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.11);
+}
+
+.first_category,
+.second_category {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 50%;
 }
