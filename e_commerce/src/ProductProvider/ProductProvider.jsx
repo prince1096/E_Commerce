@@ -128,6 +128,7 @@ const ProductProvider = ({ children }) => {
   const getProductData = async () => {
     dispatch({ type: "DATA_FETCH_START" });
 
+    // setTimeout(async () => {
     try {
       const response = await fetch("/api/products");
 
@@ -139,8 +140,9 @@ const ProductProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
     } finally {
-      dispatch({ type: "DATA_FETCH_DONE" });
+      // dispatch({ type: "DATA_FETCH_DONE" });
     }
+    // }, 2000);
   };
 
   const priceSortingHandler = (event) => {

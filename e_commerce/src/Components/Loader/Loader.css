@@ -1,0 +1,10 @@
+.spinner_loader {
+  /* margin: 0 auto; */
+  /* text-align: center; */
+  height: 100vh;
+  /* background-color: black; */
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,43 @@
+.errorpage_div_container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  background-color: whitesmoke;
+  color: #0891b2;
+}
+
+.errorpage_image_container {
+  /* max-width: 50vw; */
+}
+.errorpage_details {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 15px;
+}
+.errorpage_heading {
+  color: #0891b2;
+}
+
+.errorpage_textdiv {
+  font-size: 25px;
+  font-weight: bolder;
+  color: black;
+}
+
+.errorpage_btndiv {
+  font-size: 20px;
+  background-color: #0891b2;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 5px;
+}
+
+@media screen and (min-width: 750px) {
+  .error-page-container {
+    padding: 1rem;
+  }
+}

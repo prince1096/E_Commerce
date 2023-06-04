@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { ProductContext } from "../ProductProvider/ProductProvider";
 
@@ -16,7 +16,7 @@ import { RxCross2 } from "react-icons/rx";
 import { FaFilter } from "react-icons/fa";
 
 const Products = () => {
-  const { state } = useContext(ProductContext);
+  const { state, dispatch } = useContext(ProductContext);
   // const [showModal, setShowModal] = useState(false);
   const [showFilters, setShowFilter] = useState(false);
 
@@ -103,127 +103,129 @@ const Products = () => {
 
   const numberOfProducts = sortingPriceProduct?.length;
 
+  useEffect(() => {
+    const timeId = setTimeout(() => {
+      dispatch({ type: "DATA_FETCH_DONE" });
+    }, 2000);
+
+    return () => clearTimeout(timeId);
+  }, []);
+
   return (
     // <div>
+
     <div className="main_top_div">
       {state?.isLoading && <Loader />}
 
       {/* <Navbar2 />{" "} */}
-      <div className="fakefetch_container">
-        <div className="product_category_component">
-          <Category />
-        </div>
 
-        <div className="product_listing_page_container">
-          <div
-            className="filter_infetch hide_filter_responsive "
+      {!state?.isLoading && (
+        <div>
+          <div className="fakefetch_container">
+            <div className="product_category_component">
+              <Category />
+            </div>
 
-            // className="filter_infetch"
-          >
-            <Filter filterHandler={filterHandler} />
-          </div>
+            <div className="product_listing_page_container">
+              <div
+                className="filter_infetch hide_filter_responsive "
 
-          <div>
-            <div className="sticky_product_data">
-              <h2>Showing All Products({numberOfProducts})</h2>
+                // className="filter_infetch"
+              >
+                <Filter filterHandler={filterHandler} />
+              </div>
 
               <div>
-                <button
-                  className="show_filter_button"
-                  onClick={() => setShowFilter(true)}
-                >
-                  ShowFilters
-                  <FaFilter />
-                </button>
+                <div className="sticky_product_data">
+                  <h2>Showing All Products({numberOfProducts})</h2>
 
-                {showFilters && (
-                  <div className="hide_filter_component, mobile_filter_list">
+                  <div>
                     <button
-                      className="hide_filter_btn"
-                      onClick={() => setShowFilter(false)}
+                      className="show_filter_button"
+                      onClick={() => setShowFilter(true)}
                     >
-                      HideFilters
-                      <RxCross2 />
+                      ShowFilters
+                      <FaFilter />
                     </button>
-                    <Filter />
+
+                    {showFilters && (
+                      <div className="hide_filter_component, mobile_filter_list">
+                        <button
+                          className="hide_filter_btn"
+                          onClick={() => setShowFilter(false)}
+                        >
+                          HideFilters
+                          <RxCross2 />
+                        </button>
+                        <Filter />
+                      </div>
+                    )}
                   </div>
-                )}
+                </div>
+
+                <div className={`main_container_product  `}>
+                  {sortingPriceProduct?.length === 0 && (
+                    <div className="noproduct_found">
+                      <img src={NoProductFound} alt="" />
+                      <h1>No Product found</h1>
+                    </div>
+                  )}
+
+                  {sortingPriceProduct
+                    ?.slice((page - 1) * 8, page * 8)
+                    .map((product) => (
+                      <ProductDisplay key={product?.id} product={product} />
+                    ))}
+                </div>
               </div>
             </div>
-
-            <div className={`main_container_product  `}>
-              {sortingPriceProduct?.length === 0 && (
-                <div className="noproduct_found">
-                  <img src={NoProductFound} alt="" />
-                  <h1>No Product found</h1>
-                </div>
+          </div>
+          {/* Pagination */}
+          {sortingPriceProduct?.length > 0 && (
+            <div className="pagination">
+              {page !== 1 && (
+                <span
+                  onClick={() => prevPageHandler()}
+                  className="pagination_arrow"
+                >
+                  ◀
+                </span>
               )}
 
-              {sortingPriceProduct
-                ?.slice((page - 1) * 8, page * 8)
-                .map((product) => (
-                  <ProductDisplay key={product?.id} product={product} />
-                ))}
+              {page !== 1 && (
+                <span
+                  onClick={() => paginationHandler(page - 1)}
+                  className="previous_page_product"
+                >
+                  {" "}
+                  {page - 1}{" "}
+                </span>
+              )}
+
+              <span className="current_page_product">{page}</span>
+
+              {page !== Math.ceil(sortingPriceProduct?.length / 8) && (
+                <span
+                  onClick={() => paginationHandler(page + 1)}
+                  className="next_page_product"
+                >
+                  {" "}
+                  {page + 1}{" "}
+                </span>
+              )}
+
+              {page !== Math.ceil(sortingPriceProduct?.length / 8) && (
+                <span
+                  onClick={() => nextPageHandler()}
+                  className="pagination_arrow"
+                >
+                  ▶
+                </span>
+              )}
             </div>
-          </div>
-        </div>
-      </div>
-      {/* Pagination */}
-      {sortingPriceProduct?.length > 0 && (
-        <div className="pagination">
-          {page !== 1 && (
-            <span
-              onClick={() => prevPageHandler()}
-              className="pagination_arrow"
-            >
-              ◀
-            </span>
-          )}
-
-          {page !== 1 && (
-            <span
-              onClick={() => paginationHandler(page - 1)}
-              className="previous_page_product"
-            >
-              {" "}
-              {page - 1}{" "}
-            </span>
-          )}
-
-          <span className="current_page_product">{page}</span>
-
-          {page !== Math.ceil(sortingPriceProduct?.length / 8) && (
-            <span
-              onClick={() => paginationHandler(page + 1)}
-              className="next_page_product"
-            >
-              {" "}
-              {page + 1}{" "}
-            </span>
-          )}
-
-          {page !== Math.ceil(sortingPriceProduct?.length / 8) && (
-            <span
-              onClick={() => nextPageHandler()}
-              className="pagination_arrow"
-            >
-              ▶
-            </span>
           )}
         </div>
       )}
-      {/* <button
-        className="show_filter_button"
-        onClick={() => setShowFilter(true)}
-      >
-        ShowFilters
-      </button>
-      {showFilters && (
-        <div className="hide_filter_component">
-          <button onClick={() => setShowFilter(false)}>HideFilters</button>
-          <Filter />
-        </div>
-      )} */}
     </div>
     // </div>
   );

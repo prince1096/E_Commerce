@@ -1,15 +1,19 @@
 import React from "react";
 
-// import spinner from "../assets/spinner.gif";
+import spinner from "../../assets/spinner.gif";
+
+import "./Loader.css";
 
 // import clothes from "../assets/clothes.jpg";
 
 const Loader = () => {
   return (
-    <div>
-      {/* <img src={spinner} alt="" /> */}
+    <div className="spinner_loader">
+      <div>
+        <img src={spinner} alt="" />
+      </div>
 
-      <h1>Loader...</h1>
+      {/* <h1>Loader...</h1> */}
     </div>
   );
 };
