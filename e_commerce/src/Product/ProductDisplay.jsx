@@ -1,7 +1,7 @@
 // import { addItemToCartHandler } from "../backend/controllers/CartController";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import "./ProductDisplay.css";
-import { AuthContext } from "../Auth/AuthProvider";
+// import { AuthContext } from "../Auth/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import { ProductContext } from "../ProductProvider/ProductProvider";
 import { HiOutlineHeart } from "react-icons/hi";
