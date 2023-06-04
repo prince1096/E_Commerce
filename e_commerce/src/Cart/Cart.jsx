@@ -72,11 +72,13 @@ const Cart = () => {
 
   return (
     <div className="cart_page_container">
-      {state?.cartBox?.length === 0 ? (
+      {state?.cartBox?.length === 0 && (
         <div>
           <h2>Empty Cart Start shopping </h2>
         </div>
-      ) : (
+      )}
+
+      {state?.cartBox?.length !== 0 && (
         <div className="cart_display_page">
           <div>
             {state?.cartBox?.map((product) => (
