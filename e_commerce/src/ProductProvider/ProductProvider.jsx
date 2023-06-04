@@ -189,14 +189,6 @@ const ProductProvider = ({ children }) => {
   };
 
   const categoriesFilter = (value) => {
-    // console.log(value, "2");
-    // dispatch({
-    //   type: "CHECKBOX_FILTERS",
-    //   payload: state?.filtersList?.includes(value)
-    //     ? [...state?.filtersList]
-    //     : [...state?.filtersList, value],
-    // });
-
     console.log(value);
 
     value
