@@ -139,6 +139,7 @@ const Navbar = () => {
           {searchedText?.length > 0 && (
             <div className="searched_product_containers_mobile">
               {" "}
+              {searchedItem?.length === 0 && <h2>No Products Matched</h2>}
               {searchedItem.map((product) => (
                 <SearchedProduct products={product} />
               ))}

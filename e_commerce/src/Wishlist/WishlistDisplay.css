@@ -4,6 +4,7 @@
   border-radius: 6px;
   /* background-color: #0891b2; */
   position: relative;
+  box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.11);
 }
 
 .productdisplay_container:hover {
@@ -14,6 +15,10 @@
 .product_link_individual {
   text-decoration: none;
   background-color: white;
+}
+
+.title_wishlist {
+  text-align: center;
 }
 
 .product_span {

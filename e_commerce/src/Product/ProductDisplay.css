@@ -48,6 +48,17 @@
   font-size: 0.9rem;
 }
 
+.cart_outstock_btn {
+  background-color: #c60b0b;
+  margin-top: 10px;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
 .cart_button_added {
   background-color: #4bb543;
   margin-top: 10px;

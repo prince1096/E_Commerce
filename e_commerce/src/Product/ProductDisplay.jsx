@@ -89,13 +89,17 @@ const ProductDisplay = ({ product }) => {
           >
             Go To Cart
           </button>
-        ) : (
+        ) : product?.in_stock ? (
           <button
             disabled={state?.cartBtnDisable}
             className="cart_button"
             onClick={() => addToCartHandler(product)}
           >
             Add to Cart
+          </button>
+        ) : (
+          <button className="cart_outstock_btn" disabled={true}>
+            Out of Stock
           </button>
         )}
 

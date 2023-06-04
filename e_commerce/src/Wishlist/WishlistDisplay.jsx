@@ -35,8 +35,8 @@ const WishlistDisplay = ({ product }) => {
             style={{ width: "100%", height: "200px" }}
           />
 
-          <h3> {tilteLength(product?.title)}</h3>
-          <span className="product_span">${product?.price}</span>
+          <h3 className="title_wishlist"> {tilteLength(product?.title)}</h3>
+          <span className="product_span title_wishlist">${product?.price}</span>
 
           {product?.trending && (
             <div className="image_looks image_looks_trending">Trending</div>
@@ -66,13 +66,17 @@ const WishlistDisplay = ({ product }) => {
           >
             Go To Cart
           </button>
-        ) : (
+        ) : product?.in_stock ? (
           <button
             disabled={state?.cartBtnDisable}
             className="individual_addtocart_wish "
             onClick={() => addToCartHandler(product)}
           >
             Add to Cart
+          </button>
+        ) : (
+          <button className="cart_outstock_btn" disabled={true}>
+            Out of Stock
           </button>
         )}
       </div>
