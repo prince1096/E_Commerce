@@ -27,6 +27,16 @@ const Login = () => {
 
   const getLoginData = async (event) => {
     if (!loginData) {
+      toast.info("Enter Your Credentials", {
+        position: "bottom-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       return;
     }
     event.preventDefault();
@@ -70,7 +80,6 @@ const Login = () => {
     try {
       const response = await fetch("/api/auth/login", {
         method: "POST",
-
         body: JSON.stringify(guestUser),
       });
 

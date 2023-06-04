@@ -3,7 +3,8 @@ import "./NavBar.css";
 import { HiOutlineHeart } from "react-icons/hi";
 import { BsCart3 } from "react-icons/bs";
 import { BsPersonCircle } from "react-icons/bs";
-// import { AiOutlineSearch } from "react-icons/ai";
+
+import { HiShoppingBag } from "react-icons/hi";
 import Diversity2Icon from "@mui/icons-material/Diversity2";
 
 import { NavLink } from "react-router-dom";
@@ -63,7 +64,10 @@ const Navbar2 = () => {
           <div>
             <NavLink to="/products" className="nav_link_detail">
               {" "}
-              <strong className="nav_logo_product">Product</strong>
+              <strong className="nav_logo_product">
+                {" "}
+                <HiShoppingBag className="user_product_logo" />{" "}
+              </strong>
             </NavLink>
           </div>
           <div>
@@ -73,7 +77,7 @@ const Navbar2 = () => {
                 className="nav_link_detail"
               >
                 {" "}
-                <BsPersonCircle className="nav_logo" />
+                <BsPersonCircle className="nav_logo, user_login_logo" />
               </NavLink>
             ) : (
               <NavLink to="/login" className="nav_link_detail">
@@ -86,13 +90,33 @@ const Navbar2 = () => {
           <div>
             <NavLink to="/wishlist" className="nav_link_detail">
               {" "}
-              <HiOutlineHeart className="nav_logo" />
+              {/* <HiOutlineHeart className="nav_logo" /> */}
+              {state?.wishlistBox.length === 0 ? (
+                <HiOutlineHeart className="nav_logo" />
+              ) : (
+                <span className="wishlist_navbaar_logoo">
+                  <HiOutlineHeart className="nav_logo" />
+                  <span className="wishlist_item_number">
+                    {state?.wishlistBox.length}
+                  </span>
+                </span>
+              )}
             </NavLink>
           </div>
           <div>
             <NavLink to="/cart" className="nav_link_detail  nav_link_cart">
               {" "}
-              <BsCart3 className="nav_logo" />
+              {/* <BsCart3 className="nav_logo" /> */}
+              {state?.cartBox.length === 0 ? (
+                <BsCart3 className="nav_logo" />
+              ) : (
+                <span className="wishlist_navbaar_logoo">
+                  <BsCart3 className="nav_logo" />
+                  <span className="wishlist_item_number">
+                    {state?.cartBox.length}
+                  </span>
+                </span>
+              )}
             </NavLink>
           </div>
         </div>

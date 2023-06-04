@@ -7,9 +7,13 @@ import ProductDisplay from "./ProductDisplay";
 
 import "./Product.css";
 import Category from "../Category/Category";
-import Navbar2 from "../NavBar/NavBar";
+// import Navbar2 from "../NavBar/NavBar";
 import Loader from "../Components/Loader/Loader";
 import NoProductFound from "../assets/NoProductFound.jpg";
+import { ImCross } from "react-icons/im";
+import { RxCross2 } from "react-icons/rx";
+
+import { FaFilter } from "react-icons/fa";
 
 const Products = () => {
   const { state } = useContext(ProductContext);
@@ -97,6 +101,8 @@ const Products = () => {
       )
     : [...roundPriceFilteredProduct];
 
+  const numberOfProducts = sortingPriceProduct?.length;
+
   return (
     // <div>
     <div className="main_top_div">
@@ -119,7 +125,7 @@ const Products = () => {
 
           <div>
             <div className="sticky_product_data">
-              <div>showing All Products</div>
+              <h2>Showing All Products({numberOfProducts})</h2>
 
               <div>
                 <button
@@ -127,12 +133,17 @@ const Products = () => {
                   onClick={() => setShowFilter(true)}
                 >
                   ShowFilters
+                  <FaFilter />
                 </button>
 
                 {showFilters && (
-                  <div className="hide_filter_component">
-                    <button onClick={() => setShowFilter(false)}>
+                  <div className="hide_filter_component, mobile_filter_list">
+                    <button
+                      className="hide_filter_btn"
+                      onClick={() => setShowFilter(false)}
+                    >
                       HideFilters
+                      <RxCross2 />
                     </button>
                     <Filter />
                   </div>
