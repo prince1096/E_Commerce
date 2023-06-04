@@ -4,6 +4,9 @@ import "./AddressForm.css";
 import randomAddress from "./randomAddress";
 import { ProductContext } from "../../ProductProvider/ProductProvider";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const AddressForm = ({
   dataAddress,
   setDataAddress,
@@ -26,13 +29,41 @@ const AddressForm = ({
       alternatenumber: "",
     });
 
-    if (!storeInputData) {
+    if (
+      storeInputData?.name === "" ||
+      storeInputData?.address === "" ||
+      storeInputData?.pincode === "" ||
+      storeInputData?.city === "" ||
+      storeInputData?.mobilenumber === "" ||
+      storeInputData?.state === ""
+    ) {
+      toast.info("Enter Valid Address", {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       return;
     }
 
     dispatch({
       type: "ADD_ADDRESS",
       payload: [...state?.address, storeInputData],
+    });
+
+    toast.success("Address Added Successfully", {
+      position: "bottom-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
     });
 
     // setDataAddress([...dataAddress, storeInputData]);
@@ -194,6 +225,19 @@ const AddressForm = ({
           >
             Cancel
           </button>
+
+          <ToastContainer
+            position="bottom-right"
+            autoClose={1000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+          />
         </div>
       </div>
     </div>

@@ -26,10 +26,12 @@ const Login = () => {
   };
 
   const getLoginData = async (event) => {
-    if (!loginData) {
+    if (loginData?.email === "" || loginData?.password === "") {
+      event.preventDefault();
+
       toast.info("Enter Your Credentials", {
         position: "bottom-right",
-        autoClose: 1000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -49,6 +51,23 @@ const Login = () => {
 
       const data = await response.json();
       // setToken(data?.encodedToken);
+
+      if (!data?.encodedToken) {
+        event.preventDefault();
+
+        toast.info("Enter Valid Details", {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        return;
+      }
+
       if (data?.encodedToken) {
         setIsLoggedIn(true);
         localStorage.setItem("token", data?.encodedToken);

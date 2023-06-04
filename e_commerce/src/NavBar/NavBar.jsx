@@ -13,7 +13,7 @@ import { AuthContext } from "../Auth/AuthProvider";
 import { ProductContext } from "../ProductProvider/ProductProvider";
 import SearchedProduct from "./SearchedProduct";
 
-const Navbar2 = () => {
+const Navbar = () => {
   const { token } = useContext(AuthContext);
   const { state, dispatch } = useContext(ProductContext);
 
@@ -91,13 +91,13 @@ const Navbar2 = () => {
             <NavLink to="/wishlist" className="nav_link_detail">
               {" "}
               {/* <HiOutlineHeart className="nav_logo" /> */}
-              {state?.wishlistBox.length === 0 ? (
+              {state?.wishlistBox?.length === 0 ? (
                 <HiOutlineHeart className="nav_logo" />
               ) : (
                 <span className="wishlist_navbaar_logoo">
                   <HiOutlineHeart className="nav_logo" />
                   <span className="wishlist_item_number">
-                    {state?.wishlistBox.length}
+                    {state?.wishlistBox?.length}
                   </span>
                 </span>
               )}
@@ -107,13 +107,13 @@ const Navbar2 = () => {
             <NavLink to="/cart" className="nav_link_detail  nav_link_cart">
               {" "}
               {/* <BsCart3 className="nav_logo" /> */}
-              {state?.cartBox.length === 0 ? (
+              {state?.cartBox?.length === 0 ? (
                 <BsCart3 className="nav_logo" />
               ) : (
                 <span className="wishlist_navbaar_logoo">
                   <BsCart3 className="nav_logo" />
                   <span className="wishlist_item_number">
-                    {state?.cartBox.length}
+                    {state?.cartBox?.length}
                   </span>
                 </span>
               )}
@@ -150,4 +150,4 @@ const Navbar2 = () => {
   );
 };
 
-export default Navbar2;
+export default Navbar;

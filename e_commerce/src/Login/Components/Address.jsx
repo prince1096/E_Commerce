@@ -3,6 +3,9 @@ import AddressForm from "./AddressForm";
 import "./Address.css";
 import { ProductContext } from "../../ProductProvider/ProductProvider";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Address = () => {
   const [dataAddress, setDataAddress] = useState([
     {
@@ -67,6 +70,17 @@ const Address = () => {
       type: "ADD_ADDRESS",
       payload: updatedList,
     });
+
+    toast.warn("Address Removed", {
+      position: "bottom-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   };
 
   return (
@@ -126,6 +140,19 @@ const Address = () => {
             </div>
             // </div>
           ))}
+
+          <ToastContainer
+            position="bottom-right"
+            autoClose={1000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+          />
         </div>
       </div>
     </div>
