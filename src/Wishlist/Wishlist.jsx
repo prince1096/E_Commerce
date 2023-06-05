@@ -26,7 +26,7 @@ const Wishlist = () => {
             className="empty_image_wish"
             src={emptywishlist}
             alt=""
-            width="400px"
+            width="300px"
             height="400px"
           />
 
