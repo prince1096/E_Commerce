@@ -131,7 +131,7 @@ const Checkout = () => {
 
         {selectAddress["name"] && (
           <div>
-            <h3>Delivery Address</h3>
+            <h3>Deliver To</h3>
 
             <h4>{selectAddress?.name}</h4>
             <p> Mobile Number : {selectAddress?.mobilenumber}</p>
