@@ -220,7 +220,10 @@ const Login = () => {
             theme="colored"
           />
 
-          <Link to="/signup"> Create a New Account </Link>
+          <Link to="/signup" className="link_to_signup">
+            {" "}
+            Create a New Account{" "}
+          </Link>
         </div>
       )}
     </div>

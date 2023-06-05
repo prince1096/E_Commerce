@@ -7,6 +7,7 @@ Generic Styles * {
 .login_container {
   border: 2px solid;
   box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 /* .login_form_container {
