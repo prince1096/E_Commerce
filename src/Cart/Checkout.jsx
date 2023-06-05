@@ -1,9 +1,12 @@
 // import { useState } from "react";
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Address from "../Login/Components/Address";
 import "./Checkout.css";
 import { ProductContext } from "../ProductProvider/ProductProvider";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Checkout = () => {
   // const [storeInputData, setStoreInputData] = useState({
@@ -14,6 +17,8 @@ const Checkout = () => {
   //   state: "",
   //   mobilenumber: 0
   // });
+
+  const [selectAddress, setSelectAddress] = useState("");
 
   const { state } = useContext(ProductContext);
 
@@ -30,13 +35,40 @@ const Checkout = () => {
     0
   );
 
-  const addressLength = state?.address?.length;
+  // console.log(selectAddress);
+  // console.log(!selectAddress["name"]);
 
-  // const deliveryAddress =
+  // const addressLength = state?.address?.length;
 
-  // const deliveryAddress = [state?.address?.length?.fill(false)];
+  const addressHandler = (details) => {
+    setSelectAddress(details);
+  };
 
-  // console.log(deliveryAddress);
+  const orderPlaced = () => {
+    if (!selectAddress["name"]) {
+      toast.info("Please Select an delivery address", {
+        position: "bottom-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    } else {
+      toast.success("Order Placed", {
+        position: "bottom-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+  };
 
   const numberOfItems = totalItems?.reduce((acc, item) => acc + 1, 0);
 
@@ -55,7 +87,7 @@ const Checkout = () => {
               //   style={{ border: "2px solid" }}
             >
               {" "}
-              <input type="radio" />
+              <input type="radio" onChange={() => addressHandler(details)} />
               <div>
                 <h4>{details?.name}</h4>
                 <p> Mobile Number : {details?.mobilenumber}</p>
@@ -95,7 +127,38 @@ const Checkout = () => {
           <p>${totalPrice}</p>
         </div>
 
-        <button className="checkout_place_order">Place Order</button>
+        <hr />
+
+        {selectAddress["name"] && (
+          <div>
+            <h3>Delivery Address</h3>
+
+            <h4>{selectAddress?.name}</h4>
+            <p> Mobile Number : {selectAddress?.mobilenumber}</p>
+            <p>{selectAddress?.address}</p>
+            <p>Pin : {selectAddress?.pincode}</p>
+            <p>
+              {selectAddress?.city}, {selectAddress?.state}
+            </p>
+          </div>
+        )}
+
+        <button className="checkout_place_order" onClick={orderPlaced}>
+          Place Order
+        </button>
+
+        <ToastContainer
+          position="bottom-right"
+          autoClose={1000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
       </div>
     </div>
   );
