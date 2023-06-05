@@ -2,6 +2,8 @@ import { useContext, useEffect } from "react";
 import { ProductContext } from "../ProductProvider/ProductProvider";
 import CartDisplay from "./CartDisplay";
 
+import emptycart from "../assets/emptycart.jpg";
+
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -73,8 +75,16 @@ const Cart = () => {
   return (
     <div className="cart_page_container">
       {state?.cartBox?.length === 0 && (
-        <div>
+        <div className="empty_cart_div">
+          <img src={emptycart} alt="" width="300px" height="300px" />
           <h2>Empty Cart Start shopping </h2>
+
+          <button
+            className="empty_wishlist_btn"
+            onClick={() => navigate("/products")}
+          >
+            Add Some Items
+          </button>
         </div>
       )}
 

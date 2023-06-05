@@ -90,6 +90,14 @@
   text-align: center;
 }
 
+.empty_cart_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
 .cart_remove_button {
   position: absolute;
   bottom: 0;

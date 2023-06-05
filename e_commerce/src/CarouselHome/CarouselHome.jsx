@@ -37,8 +37,6 @@ const responsive = {
 const CarouselHome = () => {
   const { state, dispatch } = useContext(ProductContext);
 
-  
-
   const imageArr = [
     {
       image: mobiles_phones,

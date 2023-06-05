@@ -267,7 +267,7 @@ export const products = [
     price: 13,
     discountPercentage: 0,
     rating: 4.59,
-    stock: 61,
+    stock: 0,
     brand: "Fog Scent Xpressio",
     category: "fashion",
     thumbnail: "https://i.dummyjson.com/data/products/13/thumbnail.webp",

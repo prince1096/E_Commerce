@@ -8,16 +8,36 @@ import WishlistDisplay from "./WishlistDisplay";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import emptywishlist from "../assets/empty_wishlist.jpeg";
+import { useNavigate } from "react-router";
+
 const Wishlist = () => {
   const { state, dispatch } = useContext(ProductContext);
+
+  const navigate = useNavigate();
 
   // console.log(state?.wishlistBox);
 
   return (
-    <div>
+    <div className="main_wishlist_div">
       {state?.wishlistBox?.length === 0 ? (
-        <div>
-          <h1>Empty Wishlist</h1>
+        <div className="empty_wishlist_div">
+          <img
+            className="empty_image_wish"
+            src={emptywishlist}
+            alt=""
+            width="400px"
+            height="400px"
+          />
+
+          <h2>Empty Wishlist</h2>
+
+          <button
+            className="empty_wishlist_btn"
+            onClick={() => navigate("/products")}
+          >
+            Add Some Items
+          </button>
         </div>
       ) : (
         <div className="wishlist_item_container">

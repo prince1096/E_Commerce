@@ -5,3 +5,29 @@
   justify-content: center;
   margin-top: 2rem;
 }
+
+.empty_wihslist_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+.main_wishlist_div {
+  text-align: center;
+}
+
+.empty_image_wish {
+  object-fit: cover;
+}
+
+.empty_wishlist_btn {
+  margin-top: 10px;
+  background-color: #0891b2;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
