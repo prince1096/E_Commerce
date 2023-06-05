@@ -1,7 +1,4 @@
-// import { useState } from "react";
-
 import { useContext, useState } from "react";
-import Address from "../Login/Components/Address";
 import "./Checkout.css";
 import { ProductContext } from "../ProductProvider/ProductProvider";
 
@@ -9,15 +6,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Checkout = () => {
-  // const [storeInputData, setStoreInputData] = useState({
-  //   name: "",
-  //   address: "",
-  //   pincode: 0,
-  //   city: "",
-  //   state: "",
-  //   mobilenumber: 0
-  // });
-
   const [selectAddress, setSelectAddress] = useState("");
 
   const { state } = useContext(ProductContext);
@@ -34,11 +22,6 @@ const Checkout = () => {
     (acc, item) => acc + item?.price * item?.quantity,
     0
   );
-
-  // console.log(selectAddress);
-  // console.log(!selectAddress["name"]);
-
-  // const addressLength = state?.address?.length;
 
   const addressHandler = (details) => {
     setSelectAddress(details);
@@ -74,18 +57,12 @@ const Checkout = () => {
 
   return (
     <div className="checkout_main_container">
-      {/* <Address /> */}
-
       <div className="checkout_address_container">
         <div>
           <h2>Address Details</h2>
-          {/* <div>
-          </div> */}
+
           {state?.address?.map((details, index) => (
-            <div
-              className="checkout_address_mapping"
-              //   style={{ border: "2px solid" }}
-            >
+            <div className="checkout_address_mapping">
               {" "}
               <input type="radio" onChange={() => addressHandler(details)} />
               <div>

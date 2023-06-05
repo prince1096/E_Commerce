@@ -1,10 +1,3 @@
-// import bike from "../assets/bike.png";
-// import grocery_logo from "../assets/grocery_logo.jpg";
-// import homelogo from "../assets/homelogo.jpg";
-// import fashion_logo from "../assets/fashion_logo.webp";
-// import images_mobiles from "../assets/images_mobiles.jpg";
-// import laptop_logo from "../assets/laptop_logo.jpg";
-// import family_fashion_logo from "../assets/family_fashion_logo.jpg";
 import home_appliances from "../assets/home_appliances.webp";
 import Mobile_logo from "../assets/Mobile_logo_flipkart.webp";
 import laptops from "../assets/electronics_logo.webp";
@@ -17,13 +10,9 @@ import { useContext, useEffect } from "react";
 import { ProductContext } from "../ProductProvider/ProductProvider";
 
 const Category = () => {
-  const { state, dispatch, categoriesFilter } = useContext(ProductContext);
-
-  // we can map here.
+  const { dispatch, categoriesFilter } = useContext(ProductContext);
 
   const getCategoryData = async () => {
-    // dispatch({ type: "DATA_FETCH_START" });
-
     try {
       const response = await fetch("/api/categories");
 
@@ -32,12 +21,9 @@ const Category = () => {
       console.log(data);
 
       dispatch({ type: "CATEGOTY_FETCH_SUCCESS", payload: data.categories });
-
-      // console.log(data);
     } catch (error) {
       console.log(error);
     } finally {
-      // dispatch({ type: "DATA_FETCH_DONE" });
     }
   };
 

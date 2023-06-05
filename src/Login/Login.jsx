@@ -2,23 +2,16 @@ import "./Login.css";
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
-// import axios from "axios";
 import { AuthContext } from "../Auth/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ProductContext } from "../ProductProvider/ProductProvider";
 import Loader from "../Components/Loader/Loader";
 
 const Login = () => {
-  const encodedToken = localStorage.getItem("token");
   const [loggedIn, setLoggedIn] = useState(false);
-  // console.log(encodedToken);
-
-  const { state, dispatch } = useContext(ProductContext);
 
   const { setToken } = useContext(AuthContext);
-  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
-  // const [token, setToken] = useState("");
+  const { setIsLoggedIn } = useContext(AuthContext);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -61,7 +54,6 @@ const Login = () => {
         });
 
         const data = await response.json();
-        // setToken(data?.encodedToken);
 
         if (!data?.encodedToken) {
           event.preventDefault();
@@ -81,6 +73,7 @@ const Login = () => {
 
         if (data?.encodedToken) {
           setIsLoggedIn(true);
+
           toast.success("Login Successful", {
             position: "bottom-right",
             autoClose: 1000,

@@ -4,7 +4,6 @@ export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const currentUser = localStorage.getItem("isLoggedIn");
-  // console.log(currentUser);
   const [isLoggedIn, setIsLoggedIn] = useState(currentUser || false);
 
   const encodedToken = localStorage.getItem("token");

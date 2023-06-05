@@ -55,9 +55,6 @@ const IndividualProduct = () => {
           <div className="individual_trending">Trending</div>
         )}
         <div className="individual_rating">{product?.rating}</div>
-        {/* <button className="individual_heart"> */}
-        {/* <HiOutlineHeart className="nav_logo individual_heart_logo" /> */}
-        {/* </button> */}
 
         {wishlistBoxItem ? (
           <button

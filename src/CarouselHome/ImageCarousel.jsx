@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { ProductContext } from "../ProductProvider/ProductProvider";
 
 const ImageCarousel = ({ imgDetails }) => {
-  const { state, categoriesFilter } = useContext(ProductContext);
+  const { categoriesFilter } = useContext(ProductContext);
 
   return (
     <div>
@@ -15,13 +15,7 @@ const ImageCarousel = ({ imgDetails }) => {
             className="image_carousel_btn"
             onClick={() => categoriesFilter(imgDetails?.value)}
           >
-            <img
-              src={imgDetails?.image}
-              className="images_carousel"
-              // className="images_"
-              // style={{ width: "100%", height: "" }}
-              alt=""
-            />
+            <img src={imgDetails?.image} className="images_carousel" alt="" />
           </button>
         </Link>
       </div>

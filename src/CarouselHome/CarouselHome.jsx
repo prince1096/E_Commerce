@@ -11,12 +11,9 @@ import "./CarouselHome.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ImageCarousel from "./ImageCarousel";
-import { useContext, useEffect } from "react";
-import { ProductContext } from "../ProductProvider/ProductProvider";
 
 const responsive = {
   superLargeDesktop: {
-    // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
     items: 1,
   },
@@ -35,8 +32,6 @@ const responsive = {
 };
 
 const CarouselHome = () => {
-  const { state, dispatch } = useContext(ProductContext);
-
   const imageArr = [
     {
       image: mobiles_phones,
@@ -76,25 +71,18 @@ const CarouselHome = () => {
 
   return (
     <div>
-      {/* <h1>Hello World</h1> */}
       <Carousel
         swipeable={false}
         draggable={false}
         showDots={true}
         responsive={responsive}
-        ssr={true} // means to render carousel on server-side.
+        ssr={true}
         infinite={true}
-        // autoPlay={this.props.deviceType !== "mobile" ? true : false}
         autoPlay={true}
         autoPlaySpeed={3000}
         keyBoardControl={true}
         customTransition="all .4"
         transitionDuration={1000}
-        // containerClass="carousel-container"
-        // removeArrowOnDeviceType={["tablet", "mobile"]}
-        // deviceType={this.props.deviceType}
-        // dotListClass="custom-dot-list-style"
-        // itemClass="carousel-item-padding-40-px"
       >
         {imageArr.map((image, index) => (
           <ImageCarousel imgDetails={image} key={index} />

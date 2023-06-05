@@ -1,8 +1,6 @@
-/* Generic Styles */
 .productdisplay_container {
   width: 250px;
   border-radius: 6px;
-  /* background-color: #0891b2; */
   position: relative;
   box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.11);
 }
@@ -90,8 +88,6 @@ p {
   color: red;
   font-size: 24px;
 }
-
-/* Generic Styles End */
 
 .cart_button {
   align-self: flex-end;

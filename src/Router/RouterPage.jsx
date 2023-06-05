@@ -22,9 +22,7 @@ import ErrorPage from "../Error/ErrorPage";
 const RouterPage = () => {
   return (
     <div>
-      {/* RouterPage */}
       <Routes>
-        {/* <Route> */}
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<Product />} />
         <Route path="/navbar" element={<NavBar />} />
@@ -57,7 +55,6 @@ const RouterPage = () => {
           path="/individualproduct/:productId"
           element={<IndividualProduct />}
         />
-        {/* </Route> */}
 
         <Route path="/mockman" element={<Mockman />} />
 

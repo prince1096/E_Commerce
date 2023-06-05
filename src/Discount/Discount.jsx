@@ -9,14 +9,12 @@ import { Link } from "react-router-dom";
 import { ProductContext } from "../ProductProvider/ProductProvider";
 
 const Discount = () => {
-  const { state, discountFilter } = useContext(ProductContext);
+  const { discountFilter } = useContext(ProductContext);
 
   const discountValue = ["10", "20", "30", "40", "50"];
 
   return (
     <div>
-      {/* <div> */}
-
       <div className="disclogo">
         <img src={disclogo} alt="" className="img_disclogo" />
       </div>
@@ -48,7 +46,6 @@ const Discount = () => {
           </div>
         </div>
       </div>
-      {/* </div> */}
     </div>
   );
 };

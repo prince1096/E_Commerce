@@ -1,6 +1,5 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { ProductContext } from "../ProductProvider/ProductProvider";
-// import ProductDisplay from "../Product/ProductDisplay";
 
 import "./Wishlist.css";
 import WishlistDisplay from "./WishlistDisplay";
@@ -12,11 +11,9 @@ import emptywishlist from "../assets/empty_wishlist.jpeg";
 import { useNavigate } from "react-router";
 
 const Wishlist = () => {
-  const { state, dispatch } = useContext(ProductContext);
+  const { state } = useContext(ProductContext);
 
   const navigate = useNavigate();
-
-  // console.log(state?.wishlistBox);
 
   return (
     <div className="main_wishlist_div">

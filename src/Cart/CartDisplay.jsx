@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { HiOutlineHeart } from "react-icons/hi";
 import { AiFillMinusCircle } from "react-icons/ai";
@@ -12,13 +11,10 @@ import { ProductContext } from "../ProductProvider/ProductProvider";
 const CartDisplay = ({ product, updatedQtyFromCart }) => {
   const {
     state,
-    dispatch,
     removeFromCartHandler,
     addToWishListHandler,
     removeFromWishListHandler,
   } = useContext(ProductContext);
-
-  // const token = localStorage.getItem("token");
 
   const wishlistBoxItem = state?.wishlistBox?.find(
     (item) => item?._id === product?._id
@@ -33,8 +29,6 @@ const CartDisplay = ({ product, updatedQtyFromCart }) => {
           </div>
 
           <div className="cart_wishlist_container">
-            {/* <button>Heart</button> */}
-
             {wishlistBoxItem ? (
               <button
                 disabled={state?.wishListBtnDisable}

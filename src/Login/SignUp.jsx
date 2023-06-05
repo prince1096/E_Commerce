@@ -2,8 +2,6 @@ import { useState } from "react";
 import "./Login.css";
 import { useNavigate, useLocation } from "react-router";
 
-// import { Link } from "react-router-dom";
-
 const Signup = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -12,10 +10,6 @@ const Signup = () => {
     email: "",
     password: "",
   });
-
-  // const [token, setToken] = useState("");
-
-  //   console.log(userData);
 
   const signupHandler = async (event) => {
     event.preventDefault();
@@ -35,7 +29,6 @@ const Signup = () => {
       });
 
       const data = await response.json();
-      // setToken(data?.encodedToken);
 
       if (data?.encodedToken) {
         localStorage.setItem("token", data?.encodedToken);
@@ -46,12 +39,6 @@ const Signup = () => {
       console.log(data);
     } catch (error) {}
   };
-
-  // useEffect(() => {
-  //   localStorage.setItem("token", token);
-  // }, [token]);
-
-  // console.log(token);
 
   return (
     <div className="login_container">
