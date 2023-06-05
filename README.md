@@ -63,5 +63,11 @@ To run the project locally, follow these steps:
 * Vanilla CSS
 * MockBee for backend
 * Razorpay payment gateway
+
+
+
+https://github.com/prince1096/E_Commerce/assets/85553942/30e57111-57b9-4d75-9f8b-9d1f9949c8f3
+
+
    
- 
+ https://www.loom.com/share/690e7f1bc81d4bb198cb3da923b0ed24
