@@ -18,7 +18,7 @@ const Category = () => {
 
       const data = await response.json();
 
-      console.log(data);
+      // console.log(data);
 
       dispatch({ type: "CATEGOTY_FETCH_SUCCESS", payload: data.categories });
     } catch (error) {

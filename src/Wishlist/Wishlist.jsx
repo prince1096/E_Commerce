@@ -17,7 +17,7 @@ const Wishlist = () => {
 
   return (
     <div className="main_wishlist_div">
-      {state?.wishlistBox?.length === 0 ? (
+      {state?.userWishlist?.length === 0 ? (
         <div className="empty_wishlist_div">
           <img
             className="empty_image_wish"

@@ -40,7 +40,6 @@ const Navbar = () => {
           <input
             type="text"
             name=""
-            id=""
             placeholder="Search products"
             className="search_navbar_input_desktop"
             value={searchedText}
@@ -91,7 +90,7 @@ const Navbar = () => {
             <NavLink to="/wishlist" className="nav_link_detail">
               {" "}
               {/* <HiOutlineHeart className="nav_logo" /> */}
-              {state?.wishlistBox?.length === 0 ? (
+              {token && state?.wishlistBox?.length === 0 ? (
                 <HiOutlineHeart className="nav_logo" />
               ) : (
                 <span className="wishlist_navbaar_logoo">
@@ -107,7 +106,7 @@ const Navbar = () => {
             <NavLink to="/cart" className="nav_link_detail  nav_link_cart">
               {" "}
               {/* <BsCart3 className="nav_logo" /> */}
-              {state?.cartBox?.length === 0 ? (
+              {token && state?.cartBox?.length === 0 ? (
                 <BsCart3 className="nav_logo" />
               ) : (
                 <span className="wishlist_navbaar_logoo">

@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { AuthContext } from "../../Auth/AuthProvider";
 import { useNavigate } from "react-router";
+import { ProductContext } from "../../ProductProvider/ProductProvider";
 
 const UserDetails = () => {
   const { token, isLoggedIn, setToken } = useContext(AuthContext);
+  const { state, dispatch } = useContext(ProductContext);
 
   const navigate = useNavigate();
 
@@ -14,7 +16,12 @@ const UserDetails = () => {
     setToken("");
     // localStorage.clear(isLoggedIn);
     navigate("/", { replace: true });
+    // dispatch({ type: "WISHLIST_ADDED", payload: [] });
+    // dispatch({ type: "CART_ADDED", payload: [] });
   };
+
+  // console.log(state?.cartBox);
+  // console.log(state?.wishListBox);
 
   return (
     <div>
