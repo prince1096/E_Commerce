@@ -32,6 +32,7 @@ const initialState = {
     },
   ],
   categoryList: [],
+  token: "",
 };
 
 const ProductProvider = ({ children }) => {
@@ -117,6 +118,9 @@ const ProductProvider = ({ children }) => {
 
       case "UPDATE_QTY_IN_CART":
         return { ...state, cartBox: action.payload };
+
+      case "TOKEN_SET":
+        return { ...state, token: action.payload };
 
       default:
         return { ...state };
@@ -259,7 +263,7 @@ const ProductProvider = ({ children }) => {
       const data = await response.json();
       // console.log(data?.cart);
 
-      dispatch({ type: "CART_ADDED", payload: data?.cart });
+      // dispatch({ type: "CART_ADDED", payload: data?.cart });
     } catch (error) {
       console.log(error);
     }
@@ -270,6 +274,7 @@ const ProductProvider = ({ children }) => {
   }, [state?.cartBox]);
 
   const token = localStorage.getItem("token");
+
   const getWishlistProduct = async () => {
     try {
       const response = await fetch("/api/user/wishlist", {
@@ -283,7 +288,7 @@ const ProductProvider = ({ children }) => {
       const data = await response.json();
       // console.log(data?.wishlist);
 
-      dispatch({ type: "WISHLIST_ADDED", payload: data?.wishlist });
+      // dispatch({ type: "WISHLIST_ADDED", payload: data?.wishlist });
     } catch (error) {
       console.log(error);
     }
@@ -333,6 +338,8 @@ const ProductProvider = ({ children }) => {
       const data = await response.json();
       console.log(data, "cart");
 
+      dispatch({ type: "CART_ADDED", payload: data?.cart });
+
       // dispatch({ type: "CART_ADDED", payload: data?.cart });
     } catch (error) {
       // console.log(2);
@@ -372,6 +379,10 @@ const ProductProvider = ({ children }) => {
       // console.log(3);
 
       const data = await response.json();
+
+      dispatch({ type: "WISHLIST_ADDED", payload: data?.wishlist });
+
+      // dispatch()
 
       toast.success("Item added to wishlist", {
         position: "bottom-right",
