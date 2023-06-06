@@ -105,7 +105,7 @@ const IndividualProduct = () => {
 
         {cartBoxItem ? (
           <button
-            className="cart_button cart_button_added individual_addtocart"
+            className="cart_button cart_button_added individual_addedtocart"
             onClick={() => navigate("/cart")}
           >
             Go To Cart

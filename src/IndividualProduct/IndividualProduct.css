@@ -96,6 +96,17 @@
 }
 
 .individual_addtocart {
+  background-color: #0891b2;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  width: 100%;
+  font-size: 1.2rem;
+  position: absolute;
+  bottom: 0;
+}
+
+.individual_addedtocart {
   background-color: #4bb543;
   color: white;
   border: none;
