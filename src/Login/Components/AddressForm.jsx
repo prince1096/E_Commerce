@@ -225,19 +225,6 @@ const AddressForm = ({
           >
             Cancel
           </button>
-
-          <ToastContainer
-            position="bottom-right"
-            autoClose={1000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="colored"
-          />
         </div>
       </div>
     </div>
