@@ -17,10 +17,7 @@ import { FaFilter } from "react-icons/fa";
 
 const Products = () => {
   const { state, dispatch } = useContext(ProductContext);
-  // const [showModal, setShowModal] = useState(false);
   const [showFilters, setShowFilter] = useState(false);
-
-  // console.log(state);
 
   const [page, setPage] = useState(1);
   // const [className, setClassName] = useState();
