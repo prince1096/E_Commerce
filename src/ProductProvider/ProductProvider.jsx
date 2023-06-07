@@ -15,8 +15,6 @@ const initialState = {
   searchedText: "",
   cartBox: [],
   wishlistBox: [],
-  userCart: [],
-  userWishlist: [],
   filterByRating: "",
   sortByPrice: "",
   roundPrice: 0,
@@ -64,9 +62,6 @@ const ProductProvider = ({ children }) => {
 
       case "SORTING_BY_PRICE":
         return { ...state, sortByPrice: action.payload };
-
-      // case "REVIEW_SORTING":
-      //   return { ...state, initialProductData: action.payload };
 
       case "FILTER_BY_RATING":
         return { ...state, filterByRating: action.payload };
@@ -125,9 +120,6 @@ const ProductProvider = ({ children }) => {
 
       case "UPDATE_QTY_IN_CART":
         return { ...state, cartBox: action.payload };
-
-      // case "CLEAR_STATE":
-      // return initialState;
 
       default:
         return { ...state };

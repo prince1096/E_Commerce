@@ -31,7 +31,7 @@ const Footer = () => {
         </div>
 
         <div className="second_footer_container">
-          <h4 className="second_footer_content">Resoureces</h4>
+          <h4 className="second_footer_content">Resources</h4>
           <h5 className="second_footer_content">
             <button className="sign_footer_btn" onClick={() => signUpHandler()}>
               Signup
