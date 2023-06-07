@@ -11,7 +11,9 @@ const UserDetails = () => {
 
   const userInformation = localStorage.getItem("userInformation");
 
-  console.log(userInformation);
+  console.log(JSON.parse(userInformation));
+
+  const userData = JSON.parse(userInformation);
 
   const userHandler = () => {
     localStorage.clear();
@@ -34,13 +36,11 @@ const UserDetails = () => {
       {/* {state?.userScreeen} */}
       <div className="user_profile_details">
         <p>
-          <strong>Name : {userInformation?.fullname || "Prince Raj"} </strong>
+          <strong>Name : {userData?.fullname || "Prince Raj"} </strong>
           {/* <strong>Name : {userInformation?.fullname} </strong> */}
         </p>
         <p>
-          <strong>
-            Email : {userInformation?.email || "princeraj@gmail.com"}{" "}
-          </strong>
+          <strong>Email : {userData?.email || "princeraj@gmail.com"} </strong>
         </p>
       </div>
       <button className="logout_button" onClick={userHandler}>

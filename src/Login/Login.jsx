@@ -19,8 +19,8 @@ const Login = () => {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
 
   const guestUser = {
-    email: "adarshbalika@gmail.com",
-    password: "adarshbalika",
+    email: "princeraj@gmail.com",
+    password: "12345",
   };
 
   const getLoginData = async (event) => {

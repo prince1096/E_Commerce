@@ -343,7 +343,7 @@ const ProductProvider = ({ children }) => {
       });
 
       const data = await response.json();
-      console.log(data, "cart");
+      // console.log(data, "cart");
 
       // await getCartProduct();
 

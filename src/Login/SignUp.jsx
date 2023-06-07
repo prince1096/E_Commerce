@@ -32,7 +32,7 @@ const Signup = () => {
 
       if (data?.encodedToken) {
         localStorage.setItem("token", data?.encodedToken);
-        localStorage.setItem("userInformation", userData);
+        localStorage.setItem("userInformation", JSON.stringify(userData));
         navigate(location?.state?.from.pathname || "/login", { replace: true });
       }
 
