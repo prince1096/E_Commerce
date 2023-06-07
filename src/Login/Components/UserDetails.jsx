@@ -11,11 +11,16 @@ const UserDetails = () => {
 
   const userInformation = localStorage.getItem("userInformation");
 
+  console.log(userInformation);
+
   const userHandler = () => {
     localStorage.clear();
     setToken("");
     // localStorage.clear(isLoggedIn);
     navigate("/", { replace: true });
+    window.location.reload();
+
+    // dispatch({ type: "CLEAR_STATE" });
     // dispatch({ type: "WISHLIST_ADDED", payload: [] });
     // dispatch({ type: "CART_ADDED", payload: [] });
   };
@@ -30,6 +35,7 @@ const UserDetails = () => {
       <div className="user_profile_details">
         <p>
           <strong>Name : {userInformation?.fullname || "Prince Raj"} </strong>
+          {/* <strong>Name : {userInformation?.fullname} </strong> */}
         </p>
         <p>
           <strong>

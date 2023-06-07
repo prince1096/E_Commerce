@@ -100,7 +100,7 @@ const ProductProvider = ({ children }) => {
         return { ...state, cartBox: action.payload };
 
       case "USER_CART":
-        return { ...state, userCart: action.payload };
+        return { ...state, cartBox: action.payload };
 
       case "CART_BTN":
         return { ...state, cartBtnDisable: action.payload };
@@ -109,7 +109,7 @@ const ProductProvider = ({ children }) => {
         return { ...state, wishlistBox: action.payload };
 
       case "USER_WISHLIST":
-        return { ...state, userWishlist: action.payload };
+        return { ...state, wishlistBox: action.payload };
 
       case "WISHLIST_BTN":
         return { ...state, wishListBtnDisable: action.payload };
@@ -125,6 +125,9 @@ const ProductProvider = ({ children }) => {
 
       case "UPDATE_QTY_IN_CART":
         return { ...state, cartBox: action.payload };
+
+      // case "CLEAR_STATE":
+      // return initialState;
 
       default:
         return { ...state };
@@ -342,7 +345,9 @@ const ProductProvider = ({ children }) => {
       const data = await response.json();
       console.log(data, "cart");
 
-      dispatch({ type: "CART_ADDED", payload: data?.cart });
+      // await getCartProduct();
+
+      // dispatch({ type: "CART_ADDED", payload: data?.cart });
 
       dispatch({ type: "USER_CART", payload: data?.cart });
     } catch (error) {
@@ -384,7 +389,7 @@ const ProductProvider = ({ children }) => {
 
       const data = await response.json();
 
-      dispatch({ type: "WISHLIST_ADDED", payload: data?.wishlist });
+      // dispatch({ type: "WISHLIST_ADDED", payload: data?.wishlist });
 
       dispatch({ type: "USER_WISHLIST", payload: data?.wishlist });
 

@@ -63,7 +63,7 @@ const Cart = () => {
         </div>
       )}
 
-      {state?.cartBox?.length !== 0 && (
+      {token && state?.cartBox?.length !== 0 && (
         <div className="cart_display_page">
           <div>
             {state?.cartBox?.map((product) => (
