@@ -20,10 +20,6 @@ const Products = () => {
   const [showFilters, setShowFilter] = useState(false);
 
   const [page, setPage] = useState(1);
-  // const [className, setClassName] = useState();
-
-  // const pageLength = Math.ceil(state?.initialProductData?.products?.length);
-  // console.log([...Array(state?.initialProductData?.products.length / 10)]);
 
   const paginationHandler = (i) => {
     setPage(() => i);

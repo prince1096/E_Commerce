@@ -167,9 +167,7 @@ const ProductProvider = ({ children }) => {
 
   // clear filters
   const clearFilters = () => {
-    console.log(1);
     dispatch({ type: "CLEAR_FILTERS" });
-    console.log(2);
   };
 
   //
